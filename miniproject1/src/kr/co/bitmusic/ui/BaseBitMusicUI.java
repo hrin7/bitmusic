@@ -8,12 +8,12 @@ public abstract class BaseBitMusicUI {
 	public abstract void service();
 	
 	public int getInt(String msg) {
-		System.out.print("msg");
+		System.out.print(msg);
 		return Integer.parseInt(sc.nextLine());
 	}
 	
 	public String getStr(String msg) {
-		System.out.print("msg");
+		System.out.print(msg);
 		return sc.nextLine();
 	}
 }
