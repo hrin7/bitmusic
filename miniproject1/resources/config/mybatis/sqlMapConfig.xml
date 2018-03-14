@@ -19,8 +19,9 @@
 		타입을 준 후 Ctrl키를 누른 후 마우스를 올려보고 경로가 잡혀야 오타가 없는것
 	 -->
 	<typeAliases>
-		<typeAlias alias="search" type="kr.co.mlec.member.domain.Search" />
-		<typeAlias alias="music" type="kr.co.mlec.board.domain.Music" />
+		<typeAlias alias="search" type="kr.co.bitmusic.domain.Search" />
+		<typeAlias alias="music" type="kr.co.bitmusic.domain.Music" />
+		<typeAlias alias="mymusic" type="kr.co.bitmusic.domain.MyMusic" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -39,8 +40,7 @@
 		개별적으로 작성한 mapper.xml(SQL)의 위치를 알려준다.
 	 -->
 	<mappers>
-		<mapper resource="config/sqlmap/oracle/member.xml"/>
-		<mapper resource="config/sqlmap/oracle/member2.xml"/>
-		<mapper resource="config/sqlmap/oracle/board.xml"/>
+		<mapper resource="config/sqlmap/oracle/music.xml"/>
+		<mapper resource="config/sqlmap/oracle/mymusic.xml"/>
 	</mappers>
 </configuration>
