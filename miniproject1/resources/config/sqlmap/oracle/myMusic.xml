@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 선영 -->
+<mapper namespace="kr.co.bitmusic.mapper.MyMusicMapper">
+	
+	<resultMap type="Music" id="MyMusicMap">
+		<result column="no" property="no"/>
+		<result column="title" property="title"/>
+		<result column="singer" property="singer"/>
+		<result column="genre" property="genre"/>
+		<result column="lyrics" property="lyrics"/>
+		<result column="rel_date" property="relDate"/>
+		<result column="music_path" property="musicPath"/>
+		<result column="music_get_cnt" property="musicGetCnt"/>
+	</resultMap>
+	
+	
+	<select id="selectMyMusicAll" parameterType="int" resultType="Music">
+		select m1.title, m1.singer, m1.genre
+			from tb_music m1, tb_my_music m2, tb_user u
+			where u.id = m2.id
+			and m2.no = m1.no
+	</select>
+	
+    
+</mapper>
