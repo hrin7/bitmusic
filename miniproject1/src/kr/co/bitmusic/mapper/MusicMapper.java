@@ -1,5 +1,5 @@
 package kr.co.bitmusic.mapper;
 
-public class MusicMapper {
+public interface MusicMapper {
 
 }
