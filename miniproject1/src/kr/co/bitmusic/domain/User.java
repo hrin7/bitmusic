@@ -8,7 +8,7 @@ public class User {
 	private String passwordHint; 
 	private String name; 
 	private int age; 
-	private char gender; 
+	private String gender; 
 	private String email; 
 	private Date joinDate;
 	public String getId() {
@@ -41,10 +41,10 @@ public class User {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public String getEmail() {
@@ -63,6 +63,6 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", passwordHint=" + passwordHint + ", name=" + name
 				+ ", age=" + age + ", gender=" + gender + ", email=" + email + ", joinDate=" + joinDate + "]";
-	} 
+	}
 	
 }
