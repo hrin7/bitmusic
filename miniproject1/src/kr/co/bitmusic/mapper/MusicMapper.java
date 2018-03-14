@@ -1,5 +1,12 @@
 package kr.co.bitmusic.mapper;
 
-public interface MusicMapper {
+import java.util.List;
 
+import kr.co.bitmusic.domain.Music;
+
+public interface MusicMapper {
+	List<Music> selectMusicList();
+	List<Music> selectMusicListBySinger();
+	List<Music> selectMusicListByTitle();
+	List<Music> selectMusicListByRelDate();
 }
