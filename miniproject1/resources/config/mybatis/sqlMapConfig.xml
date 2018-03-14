@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 
+	xml 은 반드시 하나의 루트 태그를 가져야 한다. -> <configuration>
+ -->
+<configuration>
+
+	<!-- 설정파일에서 사용할 프로퍼티의 파일의 경로 지정: classpath
+		안쪽 내용 (ex.resource="")을 property, 속성 이라고 한다.
+		source folder(resources) 명은 제외하고 경로를 준다.
+		
+		db.properties 파일을 읽어서 xml에서 접근이 가능하다.
+	 -->
+	<properties resource="config/mybatis/db.properties"/>
+	
+	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모 
+		mapper xml 파일에서 설정된 alias를 사용할 수 있다.
+		타입을 준 후 Ctrl키를 누른 후 마우스를 올려보고 경로가 잡혀야 오타가 없는것
+	 -->
+	<typeAliases>
+		<typeAlias alias="search" type="kr.co.mlec.member.domain.Search" />
+		<typeAlias alias="music" type="kr.co.mlec.board.domain.Music" />
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 
+		개별적으로 작성한 mapper.xml(SQL)의 위치를 알려준다.
+	 -->
+	<mappers>
+		<mapper resource="config/sqlmap/oracle/member.xml"/>
+		<mapper resource="config/sqlmap/oracle/member2.xml"/>
+		<mapper resource="config/sqlmap/oracle/board.xml"/>
+	</mappers>
+</configuration>
