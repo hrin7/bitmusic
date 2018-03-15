@@ -34,7 +34,7 @@
       where id = #{id}
    </update>
 
-   <update id = "updateUserPasswordHind" parameterType = "user">
+   <update id = "updateUserPasswordHint" parameterType = "user">
       update tb_user
       set password_hint = #{passwordHint}
       where id = #{id}

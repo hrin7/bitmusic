@@ -34,7 +34,7 @@ public class LogInBitMusicUI extends BaseBitMusicUI {
 		}
 		
 		Session.setUser(u);
-		new MyMusicUI().service();
+		new MyMusicUI(userMapper).service();
 		
 	}
 }

@@ -6,19 +6,21 @@ import kr.co.bitmusic.mapper.UserMapper;
 
 public class UpdateUserUI extends BaseBitMusicUI {
 	
-	private User saved = Session.getUser();
+	User saved = Session.getUser();
 	private UserMapper userMapper;
 	public UpdateUserUI(UserMapper userMapper) {
 		this.userMapper = userMapper;
 	}
 	
 	public void service() {
-		 User user = new User();
 			while (true) {
+				User user = new User();
 				switch (menu()) {
 				case 1:
 					user.setId(saved.getId());
+					System.out.println(saved.getId());
 					user.setPassword(getStr("변경할 비밀번호를 입력하세요 : "));
+					System.out.println(user.getPassword());
 					userMapper.updateUserPassword(user);
 					break;
 				case 2: 
