@@ -57,5 +57,30 @@
    		 where id = #{id}
    		   and password = #{password}
    </select>
+   
+   <select id = "selectUserSearchId" parameterType = "user" resultMap = "userMap">
+      select *
+      from tb_user
+      <where>
+         <if test = "name != null">
+            name = #{name}
+         </if>
+         <if test = "email != null">
+            and email = #{email}
+         </if>
+      </where>
+   </select>
 
+   <select id = "selectUserSearchPassword" parameterType = "user" resultMap = "userMap">
+      select *
+      from tb_user
+      <where>
+         <if test = "id != null">
+            id = #{id}
+         </if>
+         <if test = "email != null">
+            and email = #{email}
+         </if>
+      </where>
+   </select>
 </mapper>
