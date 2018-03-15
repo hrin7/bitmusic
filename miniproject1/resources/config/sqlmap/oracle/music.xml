@@ -37,5 +37,31 @@
 		  from tb_music
 		 order by rel_date
 	</select>
+	
+	<insert id="insertMusic" parameterType="music">
+		insert into tb_music (
+			no, 
+			title, 
+			singer, 
+			genre, 
+			lyrics, 
+			rel_date, 
+			music_path
+		) values (
+			s_music_no.nextval,
+			#{title},
+			#{singer}, 
+			#{genre}, 
+			#{lyrics}, 
+			#{relDate}, 
+			#{musicPath}
+		)		
+	</insert>
+	
+	<update id="updateMusic">
+		update tb_music
+		   set title = #{title}
+		 where title like '%' || #{title} || '%'
+	</update>
 
 </mapper>

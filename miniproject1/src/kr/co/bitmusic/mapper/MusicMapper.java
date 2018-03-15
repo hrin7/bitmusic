@@ -9,4 +9,5 @@ public interface MusicMapper {
 	List<Music> selectMusicListBySinger();
 	List<Music> selectMusicListByTitle();
 	List<Music> selectMusicListByRelDate();
+	void insertMusic(Music music);
 }

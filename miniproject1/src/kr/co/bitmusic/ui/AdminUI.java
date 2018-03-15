@@ -20,10 +20,10 @@ public class AdminUI extends BaseBitMusicUI {
 		BaseBitMusicUI ui = null;
 		while (true) {
 			switch (menu()) {
-			case 1:  break;
+			case 1: ui = new SelectUserUI(userMapper); break;
 			case 2: ui = new SelectMusicUI(musicMapper); break;
-			case 3:  break;
-			case 4:  break;
+			case 3: ui = new InsertMusicUI(musicMapper); break;
+			case 4: ui = new UpdateMusicUI(musicMapper); break;
 			case 5:  break;
 			case 0: returnToMain(); break;
 			}
