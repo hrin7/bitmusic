@@ -17,34 +17,43 @@ import kr.co.bitmusic.mapper.MyMusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class MyMusicPlayerUI extends BaseBitMusicUI{
-	private MyMusicMapper mapper;
+	
+	private MyMusicMapper myMusicMapper;
 	private MusicMapper musicMapper;
 	private UserMapper userMapper;
-	private SqlSession session = MyAppSqlConfig.getSqlSession();
 
-	public MyMusicPlayerUI(UserMapper userMapper) {
-		userMapper = session.getMapper(UserMapper.class);
+	private List<Music> list;
+	
+	private String userName;
+	private int musicCnt=0;
+	
+	public MyMusicPlayerUI(String userName) {
+		this.userName = userName;
 	}
 	
 	public MyMusicPlayerUI(){
-		mapper = session.getMapper(MyMusicMapper.class);
+		SqlSession session = MyAppSqlConfig.getSqlSession();
+		myMusicMapper = session.getMapper(MyMusicMapper.class);
 		musicMapper = session.getMapper(MusicMapper.class);
-		
-		List<Music> list = mapper.selectMyMusicAll();
+		this.list = myMusicMapper.selectMyMusicAll(userName);
+		musicCnt = list.size();
 		for(Music m : list) {
 			musicPath.add(m.getMusicPath());
 		}
 	}
+	private int pos = 0;
 	
-
-	
+	private List<String> musicPath = new ArrayList<>();
 	private Scanner sc = new Scanner(System.in);
 	private Player player;
-	List<Music> list = mapper.selectMyMusicAll();
-	private List<String> musicPath = new ArrayList<>();
-	private int pos = 0;
-	private int musicCnt = list.size();
+	//List<Music> list = myMusicMapper.selectMyMusicAll(userName);
 	
+	public MyMusicPlayerUI(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+	
+		
+	// 음악 재생
 	public void play(String musicName) {
 		Thread t = new Thread() {
 			public void run() {
@@ -61,11 +70,13 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		};
 		t.start();
 	}
-	
+
+	// 재생 정지
 	public void stop() {
 		player.close();
 	}
 	
+	// 이전곡
 	public void prev() {
 		stop();
 		pos=pos-2;
@@ -83,6 +94,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		
 	}
 	
+	// 다음곡
 	public void next() {
 		stop();
 		try {
@@ -97,7 +109,8 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		play(musicPath.get(pos++));
 		
 	}
-
+	
+	// 회원 뮤직 리스트 가져오기
 	public void selectMyMusicAll() {
 		new MyMusicPlayerUI().execute();
 		//List<Music> list = mapper.selectMyMusicAll();
@@ -108,8 +121,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		}
 	}
 	
-
-	
+	// 재생메뉴
 	public void execute() {
 		while (true) {
 			switch (menu()) {
@@ -123,13 +135,14 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		}
 	}
 	
-	
+	// 음악 삭제
 	public void delete() {
 		
 	}
 	
-	
+	// 재생메뉴 UI
 	public int menu() {
+		System.out.println("-----------------");
 		System.out.println("1. 음악재생");
 		System.out.println("2. 이전곡");
 		System.out.println("3. 다음곡");
@@ -139,6 +152,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		return getInt("실행할 기능을 입력하세요 : ");
 	}
 	
+	// main
 	public void service() {
 		BaseBitMusicUI ui = null;
 		MyMusicPlayerUI myMusic = new MyMusicPlayerUI();
@@ -147,7 +161,8 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		while(true) {
 			myMusic.selectMyMusicAll();
 			switch(menu()) {
-			case 1: ui = new SelectMusicUI(musicMapper); break;
+			//case 1: ui = new SelectMusicUI(musicMapper); break;
+			case 1: myMusicMapper.selectMyMusicAll(userName);
 			case 2:
 			case 3:
 			case 4: delete();break;
@@ -156,7 +171,9 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		}
 	}
 	
+	// 뒤로가기
 	public void returnToMain() {
+		System.out.println(userName);
 		BitMusicUI ui = new BitMusicUI();
 		ui.service();
 	}
