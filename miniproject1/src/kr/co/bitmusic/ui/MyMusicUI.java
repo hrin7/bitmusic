@@ -28,7 +28,7 @@ public class MyMusicUI extends BaseBitMusicUI {
 				ui = new SelectMusicUI(musicMapper);
 				break;
 			case 2: 
-				ui = new MyMusicPlayerUI(); 
+				ui = new MyMusicPlayerUI(userMapper); 
 				break;
 			/*case 3:
 				ui = new UpdateMusicUI();
