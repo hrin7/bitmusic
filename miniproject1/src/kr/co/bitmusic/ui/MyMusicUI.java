@@ -21,10 +21,7 @@ public class MyMusicUI extends BaseBitMusicUI {
 		this.musicMapper = musicMapper;
 	}
 	
-	public MyMusicUI(String userName) {
-		this.userName = userName;
-	}
-
+	
 	public void service() {
 		BaseBitMusicUI ui = null;
 		
@@ -34,7 +31,7 @@ public class MyMusicUI extends BaseBitMusicUI {
 				ui = new SelectMusicUI(musicMapper);
 				break;
 			case 2: 
-				ui = new MyMusicPlayerUI(userName); 
+				ui = new MyMusicPlayerUI(); 
 				break;
 			case 3:
 				ui = new UpdateUserUI(userMapper);

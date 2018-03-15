@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import javazoom.jl.player.Player;
+import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
+import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.MyMusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
@@ -21,26 +23,24 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 	private MyMusicMapper myMusicMapper;
 	private MusicMapper musicMapper;
 	private UserMapper userMapper;
-
+	private User user = Session.getUser();
 	private List<Music> list;
 	
-	private String userName;
 	private int musicCnt=0;
-	
-	public MyMusicPlayerUI(String userName) {
-		this.userName = userName;
-	}
-	
+
 	public MyMusicPlayerUI(){
 		SqlSession session = MyAppSqlConfig.getSqlSession();
 		myMusicMapper = session.getMapper(MyMusicMapper.class);
 		musicMapper = session.getMapper(MusicMapper.class);
-		this.list = myMusicMapper.selectMyMusicAll(userName);
+		this.list = myMusicMapper.selectMyMusicAll(user.getId());
 		musicCnt = list.size();
 		for(Music m : list) {
 			musicPath.add(m.getMusicPath());
 		}
+		System.out.println(user.getId());
+		System.out.println(list.toString());
 	}
+	
 	private int pos = 0;
 	
 	private List<String> musicPath = new ArrayList<>();
@@ -162,7 +162,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 			myMusic.selectMyMusicAll();
 			switch(menu()) {
 			//case 1: ui = new SelectMusicUI(musicMapper); break;
-			case 1: myMusicMapper.selectMyMusicAll(userName);
+			case 1: myMusicMapper.selectMyMusicAll(user.getId());
 			case 2:
 			case 3:
 			case 4: delete();break;
@@ -173,7 +173,6 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 	
 	// 뒤로가기
 	public void returnToMain() {
-		System.out.println(userName);
 		BitMusicUI ui = new BitMusicUI();
 		ui.service();
 	}
