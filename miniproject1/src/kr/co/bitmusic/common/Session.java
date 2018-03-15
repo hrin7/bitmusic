@@ -1,3 +1,5 @@
+// 로그인 기능
+
 package kr.co.bitmusic.common;
 
 import kr.co.bitmusic.domain.User;
