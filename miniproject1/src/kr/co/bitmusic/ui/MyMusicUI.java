@@ -4,7 +4,6 @@ import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class MyMusicUI extends BaseBitMusicUI {
-	private String userName;
 	
 	public MyMusicUI() {
 	}
