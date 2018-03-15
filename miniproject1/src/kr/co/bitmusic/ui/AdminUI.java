@@ -1,12 +1,19 @@
 package kr.co.bitmusic.ui;
 
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.UserMapper;
 
 public class AdminUI extends BaseBitMusicUI {
+	UserMapper userMapper;
 	MusicMapper musicMapper;
+	
+	public AdminUI() {}
 	
 	public AdminUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
+	}
+	public AdminUI(UserMapper userMapper) {
+		this.userMapper = userMapper;
 	}
 	
 	public void service() {
@@ -14,7 +21,7 @@ public class AdminUI extends BaseBitMusicUI {
 		while (true) {
 			switch (menu()) {
 			case 1:  break;
-			case 2: ui = new selectMusicUI(musicMapper); break;
+			case 2: ui = new SelectMusicUI(musicMapper); break;
 			case 3:  break;
 			case 4:  break;
 			case 5:  break;
