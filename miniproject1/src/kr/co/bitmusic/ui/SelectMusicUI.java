@@ -5,12 +5,17 @@ import java.util.List;
 
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.UserMapper;
 
 public class SelectMusicUI extends BaseBitMusicUI {
 	MusicMapper musicMapper;
+	UserMapper userMapper;
 	
 	public SelectMusicUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
+	}
+	public SelectMusicUI(UserMapper userMapper) {
+		this.userMapper = userMapper;
 	}
 	
 	List<Music> list = null;
@@ -53,7 +58,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void returnToAdmin() {
-		AdminUI ui = new AdminUI();
+		AdminUI ui = new AdminUI(userMapper, musicMapper);
 		ui.service();
 	}
 	

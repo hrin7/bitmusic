@@ -29,11 +29,7 @@ public class SelectUserUI extends BaseBitMusicUI {
 			System.out.println("회원이 존재하지 않습니다.");
 		}
 		System.out.println("관리자 메뉴로 돌아갑니다.");
-		returnToAdmin();
+
 	}
-	
-	public void returnToAdmin() {
-		AdminUI ui = new AdminUI();
-		ui.service();
-	}
+
 }
