@@ -9,9 +9,11 @@ public class LogInBitMusicUI extends BaseBitMusicUI {
 	UserMapper userMapper;
 	MusicMapper musicMapper;
 	
-	public LogInBitMusicUI(MusicMapper musicMapper, UserMapper userMapper) {
-		this.musicMapper = musicMapper;
+	public LogInBitMusicUI(UserMapper userMapper) {
 		this.userMapper = userMapper;
+	}
+	public LogInBitMusicUI(MusicMapper musicMapper) {
+		this.musicMapper = musicMapper;
 	}
 	public LogInBitMusicUI() {}
 	
