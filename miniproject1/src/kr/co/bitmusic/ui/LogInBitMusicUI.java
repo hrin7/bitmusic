@@ -8,6 +8,7 @@ import kr.co.bitmusic.mapper.UserMapper;
 public class LogInBitMusicUI extends BaseBitMusicUI {
 	UserMapper userMapper;
 	
+
 	public LogInBitMusicUI(UserMapper userMapper) {
 		this.userMapper = userMapper;
 	}

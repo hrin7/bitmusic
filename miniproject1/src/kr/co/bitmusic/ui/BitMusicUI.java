@@ -1,5 +1,7 @@
 package kr.co.bitmusic.ui;
 
+import java.util.Scanner;
+
 import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
@@ -7,10 +9,10 @@ import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.MyMusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
-public class BitMusicUI extends BaseBitMusicUI {
-	MusicMapper musicMapper;
-	MyMusicMapper myMusicMapper;
-	UserMapper userMapper;
+public class BitMusicUI extends BaseBitMusicUI{
+	 MusicMapper musicMapper;
+	 MyMusicMapper myMusicMapper;
+	 UserMapper userMapper;
 	
 	public BitMusicUI() {
 		SqlSession session = MyAppSqlConfig.getSqlSession();
@@ -18,6 +20,7 @@ public class BitMusicUI extends BaseBitMusicUI {
 		myMusicMapper = session.getMapper(MyMusicMapper.class);
 		userMapper = session.getMapper(UserMapper.class);
 	}
+		
 	
 	public void service() {
 		BaseBitMusicUI ui = null;
@@ -34,14 +37,15 @@ public class BitMusicUI extends BaseBitMusicUI {
 		}
 	}
 	
-	public int menu() {
+	private int menu() {
 		System.out.println("1. 관리자 로그인");
 		System.out.println("2. 비회원 접속");
 		System.out.println("3. 회원 로그인");
 		System.out.println("4. 회원가입");
 		System.out.println("5. 아이디/비밀번호 찾기");
 		System.out.println("0. 종료");
-		return getInt("실행할 메뉴번호를 입력하세요 : ");
+		System.out.print("실행할 메뉴번호를 입력하세요 : ");
+		return Integer.parseInt(sc.nextLine());
 	}
 	
 	public void quit() {
