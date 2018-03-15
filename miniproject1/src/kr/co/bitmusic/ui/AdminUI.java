@@ -12,7 +12,8 @@ public class AdminUI extends BaseBitMusicUI {
 	public AdminUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
 	}
-	public AdminUI(UserMapper userMapper) {
+	public AdminUI(UserMapper userMapper, MusicMapper musicMapper) {
+		this.musicMapper = musicMapper;
 		this.userMapper = userMapper;
 	}
 	
