@@ -30,33 +30,22 @@
       #{id}, #{password}, #{passwordHint}, #{name}, #{age}, #{gender}, #{email})
    </insert>
    
-   <update id = "updateUser" parameterType = "search">
+   <update id = "updateUserPassword" parameterType = "user">
       update tb_user
-      set 
-       <choose>
-          <when test="searchType == 'id'">
-             id = #{id}
-          </when>
-          <when test="searchType == 'password'">
-             password = #{password}
-          </when>
-          <when test="searchType == 'password_hint'">
-             password_hint = #{password_hint}
-          </when>
-          <when test="searchType == 'name'">
-             name = #{name}
-          </when>
-          <when test="searchType == 'age'">
-             age = #{age}
-          </when>
-          <when test="searchType == 'gender'">
-             gender = #{gender}
-          </when>
-          <when test="searchType == 'email'">
-             email = #{email}
-          </when>
-       </choose>
-            where id = #{id}
+      set password = #{password}
+      where id = #{id}
+   </update>
+
+   <update id = "updateUserPasswordHind" parameterType = "user">
+      update tb_user
+      set password_hint = #{passwordHint}
+      where id = #{id}
+   </update>
+   
+   <update id = "updateUserEmail" parameterType = "user">
+      update tb_user
+      set email = #{email}
+      where id = #{id}
    </update>
    
    <delete id = "deleteUser" parameterType = "string">
