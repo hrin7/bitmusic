@@ -2,7 +2,6 @@ package kr.co.bitmusic.mapper;
 
 import java.util.List;
 
-import kr.co.bitmusic.domain.Search;
 import kr.co.bitmusic.domain.User;
 
 public interface UserMapper {
@@ -11,7 +10,11 @@ public interface UserMapper {
 	
 	void insertUser (User user);
 	
-	int updateUser (Search search);
+	void updateUserPassword(User password);
+
+	void updateUserPasswordHint(User passwordHint);
+	
+	void updateUserEmail(User email);
 
 	int deleteUser (String id);
 	
