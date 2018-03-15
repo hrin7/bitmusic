@@ -4,7 +4,8 @@ import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class MyMusicUI extends BaseBitMusicUI {
-
+	private String userName;
+	
 	public MyMusicUI() {
 	}
 
@@ -19,16 +20,21 @@ public class MyMusicUI extends BaseBitMusicUI {
 	public MyMusicUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
 	}
+	
+	public MyMusicUI(String userName) {
+		this.userName = userName;
+	}
 
 	public void service() {
 		BaseBitMusicUI ui = null;
+		
 		while (true) {
 			switch (menu()) {
 			case 1:  
 				ui = new SelectMusicUI(musicMapper);
 				break;
 			case 2: 
-				ui = new MyMusicPlayerUI(userMapper); 
+				ui = new MyMusicPlayerUI(userName); 
 				break;
 			/*case 3:
 				ui = new UpdateMusicUI();

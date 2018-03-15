@@ -22,12 +22,14 @@ public class LogInBitMusicUI extends BaseBitMusicUI {
 		List<User> list = userMapper.loginUser(user);
 		
 		BaseBitMusicUI ui = null;
+		String name="";
 		for (int i = 0; i < list.size(); i++) {
 			User u = list.get(i);
 			if (u.getId().equals("admin") && u.getPassword().equals("admin")) {
 				ui = new AdminUI();
 			} else if (u.getId().equals(user.getId()) && u.getPassword().equals(user.getPassword())) {
-				ui = new MyMusicUI();
+				name = user.getName();
+				ui = new MyMusicUI(name);
 			} 
 			ui.service();
 		}
