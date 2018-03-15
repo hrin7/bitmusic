@@ -3,14 +3,18 @@ package kr.co.bitmusic.ui;
 import java.util.List;
 
 import kr.co.bitmusic.domain.User;
+import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class LogInBitMusicUI extends BaseBitMusicUI {
 	UserMapper userMapper;
-	
+	MusicMapper musicMapper;
 
 	public LogInBitMusicUI(UserMapper userMapper) {
 		this.userMapper = userMapper;
+	}
+	public LogInBitMusicUI(MusicMapper musicMapper) {
+		this.musicMapper = musicMapper;
 	}
 	public LogInBitMusicUI() {}
 	
@@ -26,7 +30,7 @@ public class LogInBitMusicUI extends BaseBitMusicUI {
 		for (int i = 0; i < list.size(); i++) {
 			User u = list.get(i);
 			if (u.getId().equals("admin") && u.getPassword().equals("admin")) {
-				ui = new AdminUI();
+				ui = new AdminUI(musicMapper);
 			} else if (u.getId().equals(user.getId()) && u.getPassword().equals(user.getPassword())) {
 				name = user.getName();
 				ui = new MyMusicUI(name);
