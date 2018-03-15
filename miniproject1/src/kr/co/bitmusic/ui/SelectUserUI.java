@@ -15,9 +15,9 @@ public class SelectUserUI extends BaseBitMusicUI {
 	public void service() {
 		List<User> userList = userMapper.selectUser();
 		System.out.printf("전체 %d명\n", userList.size());
-		System.out.println("----------------------------------------------------------------");
+		System.out.println();
 		System.out.println("아이디\t\t이름\t\t나이\t\t성별\t\t이메일\t\t가입일");
-		System.out.println("----------------------------------------------------------------");
+		System.out.println();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -28,6 +28,12 @@ public class SelectUserUI extends BaseBitMusicUI {
 		if(userList.isEmpty()) {
 			System.out.println("회원이 존재하지 않습니다.");
 		}
-		System.out.println("----------------------------------------------------------------");
+		System.out.println("관리자 메뉴로 돌아갑니다.");
+		returnToAdmin();
+	}
+	
+	public void returnToAdmin() {
+		AdminUI ui = new AdminUI();
+		ui.service();
 	}
 }

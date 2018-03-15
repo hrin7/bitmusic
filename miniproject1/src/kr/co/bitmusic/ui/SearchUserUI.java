@@ -28,6 +28,7 @@ public class SearchUserUI extends BaseBitMusicUI {
 				System.out.println("비밀번호는 " + pw.getPassword() + "입니다.");
 				break;
 			}
+			returnToMain();
 		}
 	}
 	
@@ -38,8 +39,8 @@ public class SearchUserUI extends BaseBitMusicUI {
 	}
 	
 	public void returnToMain() {
-		BitMusicUI bmu = new BitMusicUI();
-		bmu.service();
+		BitMusicUI ui = new BitMusicUI();
+		ui.service();
 	}
 
 }
