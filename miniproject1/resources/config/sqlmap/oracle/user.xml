@@ -16,10 +16,8 @@
    </resultMap>
 
    <select id = "selectUser" resultMap = "userMap" >
-      select a.*, 
-      (select from)
-      from tb_user a
-      where join_date = to_char(join_date, 'yyyy-MM-dd')
+      select * 
+      from tb_user 
       order by id
    </select>
    
