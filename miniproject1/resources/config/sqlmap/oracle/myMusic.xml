@@ -16,11 +16,12 @@
 	</resultMap>
 	
 	
-	<select id="selectMyMusicAll" parameterType="int" resultType="Music">
+	<select id="selectMyMusicAll" parameterType="string" resultType="Music">
 		select m1.title, m1.singer, m1.genre
 			from tb_music m1, tb_my_music m2, tb_user u
 			where u.id = m2.id
 			and m2.no = m1.no
+			and u.id = #{name}
 	</select>
 	
     
