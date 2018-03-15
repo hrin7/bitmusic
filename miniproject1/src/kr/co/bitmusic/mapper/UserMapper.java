@@ -16,7 +16,7 @@ public interface UserMapper {
 	
 	void updateUserEmail(User email);
 
-	int deleteUser (String id);
+	void deleteUser (User delete);
 	
 	User loginUser(User user);
 	

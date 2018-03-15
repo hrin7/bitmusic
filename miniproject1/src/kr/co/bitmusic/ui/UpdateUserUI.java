@@ -18,9 +18,7 @@ public class UpdateUserUI extends BaseBitMusicUI {
 				switch (menu()) {
 				case 1:
 					user.setId(saved.getId());
-					System.out.println(saved.getId());
 					user.setPassword(getStr("변경할 비밀번호를 입력하세요 : "));
-					System.out.println(user.getPassword());
 					userMapper.updateUserPassword(user);
 					break;
 				case 2: 
@@ -33,7 +31,7 @@ public class UpdateUserUI extends BaseBitMusicUI {
 					user.setEmail(getStr("변경할 이메일을 입력하세요 : "));
 					userMapper.updateUserEmail(user);
 					break;
-				case 0: returnToMain(); break;
+				case 0: returnToFormerStep(); break;
 				}
 				System.out.println("회원정보가 수정되었습니다");
 			}
@@ -43,13 +41,13 @@ public class UpdateUserUI extends BaseBitMusicUI {
 		System.out.println("1. 비밀번호 변경");
 		System.out.println("2. 비밀번호 힌트 변경");
 		System.out.println("3. 이메일 변경");
-		System.out.println("0. 메인메뉴로 돌아가기");
+		System.out.println("0. 이전 메뉴로 돌아가기");
 		return getInt("수정할 메뉴번호를 입력하세요 : ");
 	}
 	
-	public void returnToMain() {
-		BitMusicUI ui = new BitMusicUI();
-		ui.service();
+	public void returnToFormerStep() {
+		MyMusicUI mui = new MyMusicUI();
+		mui.service();
 	}
 
 }

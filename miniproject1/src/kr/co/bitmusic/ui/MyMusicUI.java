@@ -35,11 +35,11 @@ public class MyMusicUI extends BaseBitMusicUI {
 			case 3:
 				ui = new UpdateUserUI(userMapper);
 				break;
-			/*case 4:
-				ui = new DeleteMusicUI();
+			case 4:
+				ui = new DeleteUserUI(userMapper);
 				;
 				break;
-			*/	
+				
 			case 0:
 				returnToMain();
 				break;

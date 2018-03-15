@@ -46,7 +46,7 @@
       where id = #{id}
    </update>
    
-   <delete id = "deleteUser" parameterType = "string">
+   <delete id = "deleteUser" parameterType = "user">
       delete from tb_user
       where id = #{id}
    </delete>
