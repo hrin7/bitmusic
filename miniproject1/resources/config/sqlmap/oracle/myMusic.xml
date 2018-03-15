@@ -24,5 +24,21 @@
 			and u.id = #{name}
 	</select>
 	
+	<select id="selectMyMusicOne" parameterType="string" resultMap="MyMusicMap">
+		select m1.title, m1.no
+			from tb_music m1, tb_my_music m2, tb_user u
+			where m2.id = u.id
+			and m2.no = m1.no
+			and m1.title like '%' || #{title} || '%'
+			and m2.id = #{id}
+	</select>
+	
+	<delete id="deleteMyMusicOne" parameterType="map">
+		delete tb_my_music
+			where id = #{id} 
+			  and no in (select no 
+			               from tb_music 
+			              where title like '%' || #{title} || '%')      
+	</delete>
     
 </mapper>
