@@ -18,13 +18,15 @@ public class LogInBitMusicUI extends BaseBitMusicUI {
 		User user = new User();
 		user.setId(getStr("ID를 입력하세요 : "));
 		user.setPassword(getStr("Password를 입력하세요 : "));
-		System.out.println(userMapper);
+		
 		List<User> list = userMapper.loginUser(user);
 		
-		for (User u : list) {
-			if (u.getId() == null && u.getPassword() == null) {
+//		BaseBitMusicUI ui = 
+		for (int i = 0; i < list.size(); i++) {
+			User u = list.get(i);
+			if (u.getId().equals("admin") && u.getPassword().equals("admin")) {
 				System.out.println("ID나 Password를 확인해주세요");
-			} if (u.getId().equals("admin") && u.getPassword().equals("admin")) {
+			} else if (u.getId().equals("admin") && u.getPassword().equals("admin")) {
 				AdminUI ui = new AdminUI();
 				ui.service();
 			} else {
