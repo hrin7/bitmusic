@@ -1,7 +1,5 @@
 package kr.co.bitmusic.ui;
 
-import java.util.List;
-
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.MusicMapper;
