@@ -63,5 +63,12 @@
       delete from tb_user
       where id = #{id}
    </delete>
+   
+   <select id="loginUser" parameterType="user" resultMap="userMap">
+   		select id, password
+   		  from tb_user
+   		 where id = #{id}
+   		   and password = #{password}
+   </select>
 
 </mapper>

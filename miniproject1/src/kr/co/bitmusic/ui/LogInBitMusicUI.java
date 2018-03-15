@@ -1,31 +1,35 @@
 package kr.co.bitmusic.ui;
 
+import java.util.List;
+
 import kr.co.bitmusic.domain.User;
-import kr.co.bitmusic.mapper.MusicMapper;
-import kr.co.bitmusic.mapper.MyMusicMapper;
+import kr.co.bitmusic.mapper.UserMapper;
 
 public class LogInBitMusicUI extends BaseBitMusicUI {
-	private MusicMapper musicMapper;
-	private MyMusicMapper myMusicMapper;
+	UserMapper userMapper;
 	
-	public LogInBitMusicUI(MusicMapper musicMapper) {
-		this.musicMapper = musicMapper;
+	public LogInBitMusicUI(UserMapper userMapper) {
+		this.userMapper = userMapper;
 	}
-	public LogInBitMusicUI(MyMusicMapper myMusicMapper) {
-		this.myMusicMapper = myMusicMapper;
-	}
+	public LogInBitMusicUI() {}
 	
 	public void service() {
 		User user = new User();
 		user.setId(getStr("ID를 입력하세요 : "));
 		user.setPassword(getStr("Password를 입력하세요 : "));
+		System.out.println(userMapper);
+		List<User> list = userMapper.loginUser(user);
 		
-			BaseBitMusicUI ui = null;
-			if(user.getId()=="admin" && user.getPassword()=="admin") {
-				ui = new AdminUI(musicMapper);
+		for (User u : list) {
+			if (u.getId() == null && u.getPassword() == null) {
+				System.out.println("ID나 Password를 확인해주세요");
+			} if (u.getId().equals("admin") && u.getPassword().equals("admin")) {
+				AdminUI ui = new AdminUI();
+				ui.service();
 			} else {
-				ui = new MyMusicUI(myMusicMapper);
+				MyMusicUI ui = new MyMusicUI();
+				ui.service();
 			}
-			ui.service();
 		}
+	}
 }
