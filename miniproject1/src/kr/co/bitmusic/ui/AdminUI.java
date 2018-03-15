@@ -25,7 +25,7 @@ public class AdminUI extends BaseBitMusicUI {
 			case 2: ui = new SelectMusicUI(musicMapper); break;
 			case 3: ui = new InsertMusicUI(musicMapper); break;
 			case 4: ui = new UpdateMusicUI(musicMapper); break;
-			case 5:  break;
+			case 5: ui = new DeleteMusicUI(musicMapper); break;
 			case 0: returnToMain(); break;
 			}
 			ui.service();

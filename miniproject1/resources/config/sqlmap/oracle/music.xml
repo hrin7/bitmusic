@@ -58,10 +58,21 @@
 		)		
 	</insert>
 	
-	<update id="updateMusic">
+	<select id="selectMusicUpdateTitle" parameterType="string" resultMap="musicMap">
+		select no, title
+		  from tb_music
+		 where title like '%' || #{title} || '%'
+	</select>
+	
+	<update id="updateMusic" parameterType="music">
 		update tb_music
 		   set title = #{title}
-		 where title like '%' || #{title} || '%'
+	 	 where no = #{no}
 	</update>
-
+	
+	<delete id="deleteMusic">
+		delete 
+		  from tb_music
+		 where title = #{title}
+	</delete>
 </mapper>

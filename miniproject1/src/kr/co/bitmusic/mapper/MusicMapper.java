@@ -10,4 +10,6 @@ public interface MusicMapper {
 	List<Music> selectMusicListByTitle();
 	List<Music> selectMusicListByRelDate();
 	void insertMusic(Music music);
+	List<Music> selectMusicUpdateTitle(String title);
+	void updateMusic(Music music);
 }
