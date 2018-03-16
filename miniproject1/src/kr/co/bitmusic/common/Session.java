@@ -23,7 +23,7 @@ public class Session {
 		mappers.put("sampleMusicMapper", session.getMapper(SampleMusicMapper.class));
 		mappers.put("musicMapper", session.getMapper(MusicMapper.class));
 		mappers.put("userMapper", session.getMapper(UserMapper.class));
-		mappers.put("mymusicMapper", session.getMapper(MyMusicMapper.class));
+		mappers.put("myMusicMapper", session.getMapper(MyMusicMapper.class));
 	}
 	
 	public static User getUser() {

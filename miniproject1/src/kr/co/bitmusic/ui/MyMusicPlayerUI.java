@@ -37,7 +37,6 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 	//private MyMusicUI myui = null;
 
 	public MyMusicPlayerUI(){
-		SqlSession session = MyAppSqlConfig.getSqlSession();
 		//this.list = myMusicMapper.selectMyMusicAll(user.getId());
 		this.list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
 		musicCnt = list.size();
