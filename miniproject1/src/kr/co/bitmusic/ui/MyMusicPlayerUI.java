@@ -51,7 +51,8 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 
 	public int playMenu() {
 		System.out.println();
-		System.out.println("[1.재생][2.이전곡][3.다음곡][4.정지][5.전곡재생][6.랜덤재생][7.노래삭제][8.내음악 가사보기][0.뒤로가기]");
+		System.out.println("[1.재생][2.이전곡][3.다음곡][4.정지][5.전곡재생]");
+		System.out.println("[6.랜덤재생][7.노래삭제][8.내음악 가사보기][0.뒤로가기]");
 		System.out.println("------------------------------------------------");
 		return getInt("재생 메뉴를 입력하세요 : ");
 	} // playMenu
