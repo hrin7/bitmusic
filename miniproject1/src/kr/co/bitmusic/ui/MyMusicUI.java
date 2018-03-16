@@ -9,14 +9,17 @@ public class MyMusicUI extends BaseBitMusicUI {
 	}
 
 	private UserMapper userMapper;
+	private MusicMapper musicMapper;
 
 	public MyMusicUI(UserMapper userMapper) {
 		this.userMapper = userMapper;
 	}
 
-	private MusicMapper musicMapper;
-
 	public MyMusicUI(MusicMapper musicMapper) {
+		this.musicMapper = musicMapper;
+	}
+	public MyMusicUI(UserMapper userMapper, MusicMapper musicMapper) {
+		this.userMapper = userMapper;
 		this.musicMapper = musicMapper;
 	}
 	

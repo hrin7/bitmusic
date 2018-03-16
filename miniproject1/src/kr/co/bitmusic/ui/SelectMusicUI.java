@@ -3,14 +3,22 @@ package kr.co.bitmusic.ui;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
+import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.MyMusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class SelectMusicUI extends BaseBitMusicUI {
 	MusicMapper musicMapper;
+	MyMusicMapper myMusicMapper;
 	UserMapper userMapper;
+	User user = Session.getUser();
 	
+	public SelectMusicUI(MyMusicMapper myMusicMapper) {
+		this.myMusicMapper = myMusicMapper;
+	}
 	public SelectMusicUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
 	}
@@ -40,7 +48,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		System.out.println("3. 노래 제목 순");
 		System.out.println("4. 발매일순");
 		System.out.println("5. 인기순");
-		System.out.println("0. 관리자메뉴로 돌아가기");
+		System.out.println("0. 이전 메뉴로 돌아가기");
 		System.out.println("--------------------");
 		return getInt("정렬할 메뉴번호를 입력하세요 : ");
 	}
@@ -58,8 +66,13 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void returnToAdmin() {
-		AdminUI ui = new AdminUI(userMapper, musicMapper);
-		ui.service();
+		if (user.getId().equals("admin")) {
+			new AdminUI(userMapper, musicMapper).service();
+			return;
+		} else {
+			new MyMusicUI(userMapper).service(); 
+		}
+		
 	}
 	
 }
