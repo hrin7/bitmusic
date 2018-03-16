@@ -1,5 +1,7 @@
 package kr.co.bitmusic.domain;
 
+import java.util.Date;
+
 public class SampleMusic {
 	
 	private int no; 
@@ -12,7 +14,7 @@ public class SampleMusic {
 	
 	private String lyrics;
 	
-	private String relDate;
+	private Date relDate;
 	
 	private String sampleMusicPath;
 
@@ -56,11 +58,11 @@ public class SampleMusic {
 		this.lyrics = lyrics;
 	}
 
-	public String getRelDate() {
+	public Date getRelDate() {
 		return relDate;
 	}
 
-	public void setRelDate(String relDate) {
+	public void setRelDate(Date relDate) {
 		this.relDate = relDate;
 	}
 
