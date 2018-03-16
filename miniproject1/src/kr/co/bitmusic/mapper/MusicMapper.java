@@ -11,18 +11,14 @@ public interface MusicMapper {
 	List<Music> selectMusicListByRelDate();
 	void insertMusic(Music music);
 	
-	List<Music> selectMusicUpdateTitle(String title);
-	void updateMusicTitle(Music music);
+	List<Music> selectMusicTitle(String title);
+	List<Music> selectMusicSinger(String singer);
 	
-	List<Music> selectMusicUpdateSinger(String singer);
-	void updateMusicSinger(Music music);
+	int updateMusicTitle(Music music);
+	int updateMusicSinger(Music music);
+	int updateMusicGenre(Music music);
+	int updateMusicRelDate(Music music);
+	int updateMusicMusicPath(Music music);
 	
-	List<Music> selectMusicUpdateGenre(String genre);
-	void updateMusicGenre(Music music);
-	
-	List<Music> selectMusicUpdateRelDate(String relDate);
-	void updateMusicRelDate(Music music);
-	
-	List<Music> selectMusicUpdateMusicPath(String musicPath);
-	void updateMusicMusicPath(Music music);
+	int deleteMusic(int no);
 }

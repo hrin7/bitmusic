@@ -58,23 +58,11 @@
 		)		
 	</insert>
 	
-	<select id="selectMusicUpdateTitle" parameterType="string" resultMap="musicMap">
-		select no, title
-		  from tb_music
-		 where title like '%' || #{title} || '%'
-	</select>
-	
 	<update id="updateMusicTitle" parameterType="music">
 		update tb_music
 		   set title = #{title}
 	 	 where no = #{no}
 	</update>
-	
-	<select id="selectMusicUpdateSinger" parameterType="string" resultMap="musicMap">
-		select no, singer
-		  from tb_music
-		 where singer like '%' || #{singer} || '%'
-	</select>
 	
 	<update id="updateMusicSinger" parameterType="music">
 		update tb_music
@@ -82,23 +70,11 @@
 	 	 where no = #{no}
 	</update>
 	
-	<select id="selectMusicUpdateGenre" parameterType="string" resultMap="musicMap">
-		select no, genre
-		  from tb_music
-		 where singer like '%' || #{genre} || '%'
-	</select>
-	
 	<update id="updateMusicGenre" parameterType="music">
 		update tb_music
 		   set genre = #{genre}
 	 	 where no = #{no}
 	</update>
-	
-	<select id="selectMusicUpdateRelDate" parameterType="string" resultMap="musicMap">
-		select no, rel_date
-		  from tb_music
-		 where rel_date like '%' || #{relDate} || '%'
-	</select>
 	
 	<update id="updateMusicRelDate" parameterType="music">
 		update tb_music
@@ -106,21 +82,29 @@
 	 	 where no = #{no}
 	</update>
 	
-	<select id="selectMusicUpdateMusicPath" parameterType="string" resultMap="musicMap">
-		select no, music_path
-		  from tb_music
-		 where music_path like '%' || #{musicPath} || '%'
-	</select>
-	
 	<update id="updateMusicMusicPath" parameterType="music">
 		update tb_music
 		   set music_path = #{musicPath}
 	 	 where no = #{no}
 	</update>
 	
-	<delete id="deleteMusic">
+	<!-- 제목으로 검색하여 검색된 결과 나오는 쿼리문 -->
+	<select id="selectMusicTitle" parameterType="string" resultMap="musicMap">
+		select no, singer, title
+		  from tb_music
+		 where title like '%' || #{title} || '%'
+	</select>
+	
+	<!-- 이름으로 검색하여 검색된 결과 나오는 쿼리문 -->
+	<select id="selectMusicSinger" parameterType="string" resultMap="musicMap">
+		select no, singer, title
+		  from tb_music
+		 where singer like '%' || #{singer} || '%'
+	</select>
+	
+	<delete id="deleteMusic" parameterType="int">
 		delete 
 		  from tb_music
-		 where title = #{title}
+		 where no = #{no}
 	</delete>
 </mapper>
