@@ -20,8 +20,8 @@ public class LogInBitMusicUI extends BaseBitMusicUI {
 		user.setId(getStr("ID를 입력하세요 : "));
 		user.setPassword(getStr("Password를 입력하세요 : "));
 		if (user.getId().equals("admin") && user.getPassword().equals("admin")) {
-			new AdminUI(userMapper, musicMapper).service();
 			Session.setUser(user);
+			new AdminUI(userMapper, musicMapper).service();
 			return;
 		}
 		
