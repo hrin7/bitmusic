@@ -23,8 +23,8 @@ public class GuestUserUI extends BaseBitMusicUI {
 		list = sampleMusicMapper.selectSampleMusicList();
 		for(SampleMusic sm : list) {
 			System.out.print("no."+sm.getNo()+"\t");
-			System.out.print("노래제목 : "+sm.getTitle()+"\t");
-			System.out.print("가수 : "+sm.getSinger()+"\n");
+//			System.out.print("노래제목 : "+sm.getTitle()+"\t");
+//			System.out.print("가수 : "+sm.getSinger()+"\n");
 		}
 		
 		SampleMusicPlayerUI smup = new SampleMusicPlayerUI(sampleMusicMapper);
