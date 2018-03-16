@@ -63,8 +63,13 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 		
 		System.out.print("미리듣기할 곡의 번호를 입력하세요 : ");
 		int no = Integer.parseInt(sc.nextLine());
-		List<Music> list = null;
-		list = ((SampleMusicMapper) Session.getMapper("userMapper")).selectSampleMusicList();
+		
+//		for(File f : files) {
+//			if(no==f.get)
+//		}
+		
+//		List<Music> list = null;
+//		list = ((SampleMusicMapper) Session.getMapper("userMapper")).selectSampleMusicList();
 //		if(no==list.)
 		
 	}
