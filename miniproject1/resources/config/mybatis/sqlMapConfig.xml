@@ -21,6 +21,7 @@
 	<typeAliases>
 		<typeAlias alias="search" type="kr.co.bitmusic.domain.Search" />
 		<typeAlias alias="music" type="kr.co.bitmusic.domain.Music" />
+		<typeAlias alias="samplemusic" type="kr.co.bitmusic.domain.SampleMusic" />
 		<typeAlias alias="mymusic" type="kr.co.bitmusic.domain.MyMusic" />
 		<typeAlias alias="user" type="kr.co.bitmusic.domain.User" />
 	</typeAliases>
@@ -42,6 +43,7 @@
 	 -->
 	<mappers>
 		<mapper resource="config/sqlmap/oracle/music.xml"/>
+		<mapper resource="config/sqlmap/oracle/samplemusic.xml"/>
 		<mapper resource="config/sqlmap/oracle/mymusic.xml"/>
 		<mapper resource="config/sqlmap/oracle/user.xml"/>
 	</mappers>
