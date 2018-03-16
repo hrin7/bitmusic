@@ -8,7 +8,7 @@
 		<result column="sample_music_path" property="sampleMusicPath" />
 	</resultMap>
 	
-	<select id = "selectSampleMusicList" resultMap = "sampleMusicMap">
+	<select id = "selectSampleMusicList" resultType="Music">
 	   select sm.no, m.title, m.singer, m.rel_date
 	   from tb_sample_music sm
 	   inner join tb_music m 
