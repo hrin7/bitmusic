@@ -24,6 +24,14 @@
 			and u.id = #{name}
 	</select>
 	
+	<select id="selectMyMusicLyrics" parameterType="string" resultMap="MyMusicMap">
+		select m1.title, m1.singer, m1.genre, m1.lyrics, m1.music_path
+			from tb_music m1, tb_my_music m2, tb_user u
+			where u.id = m2.id
+			and m2.no = m1.no
+			and u.id = #{name}
+	</select>
+	
 	<select id="selectMyMusicOne" parameterType="map" resultMap="MyMusicMap">
 		select m1.title, m1.no
 			from tb_music m1, tb_my_music m2, tb_user u

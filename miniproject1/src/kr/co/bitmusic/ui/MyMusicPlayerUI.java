@@ -1,9 +1,14 @@
 // 선영
 package kr.co.bitmusic.ui;
 
+import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,15 +21,10 @@ import javazoom.jl.player.Player;
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.User;
-import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.MyMusicMapper;
-import kr.co.bitmusic.mapper.UserMapper;
 
 public class MyMusicPlayerUI extends BaseBitMusicUI{
 
-	private MyMusicMapper myMusicMapper;
-	private MusicMapper musicMapper;
-	private UserMapper userMapper;
 	private User user = Session.getUser();
 	private List<Music> list;
 	private int pos=0;
@@ -38,39 +38,33 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 
 	public MyMusicPlayerUI(){
 		SqlSession session = MyAppSqlConfig.getSqlSession();
-		myMusicMapper = session.getMapper(MyMusicMapper.class);
-		musicMapper = session.getMapper(MusicMapper.class);
-		this.list = myMusicMapper.selectMyMusicAll(user.getId());
+		//this.list = myMusicMapper.selectMyMusicAll(user.getId());
+		this.list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
 		musicCnt = list.size();
-
 	}
 
 	// main
 	public void service() {
 		//BaseBitMusicUI ui = null;
-		while(true) {
-			switch(menu()) {
-			//case 1: 
-			case 2: subMenu();break;
-			//case 3:
-			//case 4: delete();break;
-			case 0: returnToMain();break;
+		if(list.size() == 0) {
+			System.out.println("구매하신 곡이 없습니다.");
+		}else {
+			while(true) {
+				switch(menu()) {
+				case 1: subMenu();break;
+				case 0: returnToMain();break;
+				}
+				//ui.service();
 			}
-			//ui.service();
 		}
 	}
 
 	public int playMenu() {
 		System.out.println("------------------------------------------------");
-		System.out.println("1.재생\t2.이전곡\t3.다음곡\t4.정지\t5.삭제\t0.뒤로가기 ");
-		/*System.out.println("2. 이전곡");
-		System.out.println("3. 다음곡");
-		System.out.println("4. 음악정지");
-		System.out.println("5. 음악삭제");
-		System.out.println("0. 뒤로가기");
-		 */System.out.println("------------------------------------------------");
-		 return getInt("재생 메뉴를 입력하세요 : ");
-	}
+		System.out.println("[1.재생][2.이전곡][3.다음곡][4.정지][5.전곡반복][6.랜덤반복][7.노래삭제][8.재생중인곡의 가사보기][0.뒤로가기]");
+		System.out.println("------------------------------------------------");
+		return getInt("재생 메뉴를 입력하세요 : ");
+	} // playMenu
 
 
 	public void subMenu() {
@@ -80,22 +74,29 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 			case 2: prev(); break;
 			case 3: next(); break;
 			case 4: stop(); break;
-			case 5: delete(); break;
+			case 5: playAll(); break;
+			case 6: playShuffle(); break;
+			case 7: delete(); break;
+			case 8: lyrics();break;
 			case 0: new MyMusicUI().service();
 			}
 
 		}
-	}
+	} // subMenu
 
 
 	// 재생메뉴 UI
 	public int menu() {
 		System.out.println("------------------------------------------------");
-		list = myMusicMapper.selectMyMusicAll(user.getId());
+		//list = myMusicMapper.selectMyMusicAll(user.getId());
+		list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
+
+
 		System.out.printf("%s님의 음악목록은 %d개입니다.\n", user.getId(), list.size());
 		System.out.println("------------------------------------------------");
 		System.out.println("가수\t\t제목\t\t장르");
 		System.out.println("------------------------------------------------");
+
 		for(Music m : list) {
 			musicPath.add(m.getMusicPath());
 			System.out.printf("%s\t\t%s\t\t%s\n", m.getSinger(), m.getTitle(), m.getGenre());
@@ -103,18 +104,23 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 
 		subMenu();
 
-		return getInt("실행할 기능을 입력하세요 : ");
-	}
+
+		return getInt("실행할 메뉴번호를 입력하세요 : ");
+	} // menu
 
 
 	// 음악 재생
 	public void play() {
 		Music m = list.get(pos);
+
 		System.out.println("------------------------------------------------");
 		System.out.printf("♬♬ 현재 재생중인곡은 %s의 %s입니다. ♬♬\n", m.getSinger(), m.getTitle());
 
 		Thread t = new Thread() {
 			public void run() {
+				try {
+					player.close();
+				} catch (Exception e) {}
 				try {
 					BufferedInputStream buffer =
 							new BufferedInputStream(new FileInputStream(m.getMusicPath()));
@@ -127,13 +133,13 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 			} // run
 		}; // Thread
 		t.start();
+
 	} // play
 
 	// 재생 정지
 	public void stop() {
 		player.close();
-		System.out.println("재생을 멈추었습니다.");
-	}
+	} // stop
 
 	// 이전곡
 	public void prev() {
@@ -145,7 +151,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 			pos = 0;
 		}
 		play();
-	}
+	} // prev
 
 	// 다음곡
 	public void next() {
@@ -156,8 +162,103 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 			pos = 0;
 		}
 		play();
-		System.out.println("다음곡을 재생합니다.");
+	} // next
+
+
+	public void playAll(){
+		//list = myMusicMapper.selectMyMusicAll(user.getId());
+		list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
+		
+		System.out.println("------------------------------------------------");
+		System.out.printf("♬♬ 순차재생중입니다. ♬♬\n");
+		
+		Thread t = new Thread() {
+			public void run() {
+				try {
+					while(true){
+						Music m = list.get(pos);
+						try {player.close();} catch (Exception e) {}
+						BufferedInputStream buffer =
+								new BufferedInputStream(new FileInputStream(m.getMusicPath()));
+						player = new Player(buffer);
+						player.play();
+						pos++;
+						if(pos == list.size()) {
+							pos = 0;
+						}
+						
+						player.close();
+						
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} // run
+		}; // Thread
+		t.start();
+		
+	} // playAll
+
+
+	public void playShuffle() {
+		//list = myMusicMapper.selectMyMusicAll(user.getId());
+		list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
+		System.out.printf("♬♬ 랜덤재생중입니다. ♬♬\n");
+		Collections.shuffle(list);
+
+		Thread t = new Thread() {
+			public void run() {
+				while(true){
+					Music m = list.get(pos);
+					System.out.println("------------------------------------------------");
+					try {player.close();} catch (Exception e) {}
+					try {
+						BufferedInputStream buffer =
+								new BufferedInputStream(new FileInputStream(m.getMusicPath()));
+						player = new Player(buffer);
+						player.play();
+						pos++;
+						if(pos == list.size()) {
+							pos = 0;
+						}
+						player.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			} // run
+		}; // Thread
+		t.start();
+
+
+	} // playShuffle
+
+
+	public void lyrics() {
+		//list = myMusicMapper.selectMyMusicLyrics(user.getId());
+		list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
+		/*
+		List<Music> lyrics = null;
+		for (int i=0; i<list.size();i++) {
+			Music m = list.get(i);
+			System.out.printf("[번호]\t[가수]\t[제목]", i, m.getSinger(), m.getTitle());
+			lyrics.add(m);
+		}
+
+		int no = getInt("가사보기할 노래 번호를 입력하세요 : ");
+		String string = lyrics.get(no).getLyrics();
+
+		System.out.println(string);
+		*/
+		try { Desktop.getDesktop().browse(new URI("C:java-lec/git/bitmusic/miniproject1/lyrics/test.txt"));
+		} catch (IOException e) { e.printStackTrace();
+		} catch (URISyntaxException e) { e.printStackTrace(); }
+
+		
+
 	}
+
 
 	// 음악 삭제
 	public void delete() {
@@ -167,7 +268,8 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		param.put("id", user.getId());
 		param.put("title", getStr("삭제할 노래 제목을 입력하세요 : "));
 
-		Music m = myMusicMapper.searchMyMusic(param);
+		Music m = ((MyMusicMapper)Session.getMapper("myMusicMapper")).searchMyMusic(param);
+		//Music m = myMusicMapper.searchMyMusic(param);
 
 		if(m==null) {
 			System.out.println("입력하신 노래 제목을 찾을 수 없습니다.");
@@ -176,7 +278,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 			anwer = Integer.parseInt(sc.nextLine());
 		}
 		if(anwer == 1) {
-			int result = myMusicMapper.deleteMyMusicOne(param);
+			int result = ((MyMusicMapper)Session.getMapper("myMusicMapper")).deleteMyMusicOne(param);
 			if(result == 0) {
 				getStr("입력하신 제목의 노래가 없습니다.");
 			}else {

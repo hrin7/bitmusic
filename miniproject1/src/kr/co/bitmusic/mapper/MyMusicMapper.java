@@ -10,6 +10,8 @@ public interface MyMusicMapper {
 
 	public List<Music> selectMyMusicAll (String userName);
 	
+	public List<Music> selectMyMusicLyrics (String userName);
+	
 	public int deleteMyMusicOne (Map<String, String> param);
 	
 	public Music selectMyMusicOne (Map<String, String> param);
