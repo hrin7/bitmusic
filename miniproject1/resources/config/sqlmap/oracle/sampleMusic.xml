@@ -8,12 +8,18 @@
 		<result column="sample_music_path" property="sampleMusicPath" />
 	</resultMap>
 	
-	<select id = "selectSampleMusicList" resultType="Music">
+	<select id = "selectSampleMusicList" resultType="music">
 	   select sm.no, m.title, m.singer, m.rel_date
 	   from tb_sample_music sm
 	   inner join tb_music m 
 	   on sm.no = m.no
 	   order by sm.no 
+	</select>
+	
+	<select id = "sampleMusicChooseToPlay" parameterType="int" resultType="samplemusic">
+	   select sample_music_path
+	   from tb_sample_music
+	   where no = #{no}
 	</select>
 	
 	<insert id="insertSampleMusic" parameterType="samplemusic">
