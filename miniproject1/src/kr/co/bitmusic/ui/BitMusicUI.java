@@ -35,7 +35,7 @@ public class BitMusicUI extends BaseBitMusicUI{
 				ui.service();
 			}
 		} catch (Exception e) {
-			System.out.println("메뉴번호를 다시 입력해 주세요.");
+			System.out.println("존재하지 않는 메뉴번호입니다.");
 			returnToBitMusicUI();
 		}
 	}
