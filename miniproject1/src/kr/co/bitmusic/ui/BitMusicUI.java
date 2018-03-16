@@ -1,38 +1,17 @@
 package kr.co.bitmusic.ui;
 
-import org.apache.ibatis.session.SqlSession;
-
-import common.db.MyAppSqlConfig;
-import kr.co.bitmusic.mapper.MusicMapper;
-import kr.co.bitmusic.mapper.MyMusicMapper;
-import kr.co.bitmusic.mapper.SampleMusicMapper;
-import kr.co.bitmusic.mapper.UserMapper;
-
 public class BitMusicUI extends BaseBitMusicUI{
-	 MusicMapper musicMapper;
-	 MyMusicMapper myMusicMapper;
-	 UserMapper userMapper;
-	 SampleMusicMapper sampleMusicMapper;
-	
-	public BitMusicUI() {
-		SqlSession session = MyAppSqlConfig.getSqlSession();
-		musicMapper = session.getMapper(MusicMapper.class);
-		myMusicMapper = session.getMapper(MyMusicMapper.class);
-		userMapper = session.getMapper(UserMapper.class);
-		sampleMusicMapper = session.getMapper(SampleMusicMapper.class);
-	}
-		
-	
+
 	public void service() {
 		
 		try {
 			BaseBitMusicUI ui = null;
 			while (true) {
 				switch (menu()) {
-				case 1: ui = new LogInBitMusicUI(userMapper, musicMapper, sampleMusicMapper); break;
-				case 2: ui = new GuestUserUI(sampleMusicMapper); break;
-				case 3: ui = new JoinUserUI(userMapper); break;
-				case 4: ui = new SearchUserUI(userMapper); break;
+				case 1: ui = new LogInBitMusicUI(); break;
+				case 2: ui = new GuestUserUI(); break;
+				case 3: ui = new JoinUserUI(); break;
+				case 4: ui = new SearchUserUI(); break;
 				case 0: quit(); break;
 				}
 				ui.service();

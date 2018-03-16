@@ -3,8 +3,6 @@ package kr.co.bitmusic.ui;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
@@ -13,10 +11,7 @@ import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class InsertMusicUI extends BaseBitMusicUI {
-	
-	public InsertMusicUI() {}
 
-	
 	public void service() {
 		Music m = new Music();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

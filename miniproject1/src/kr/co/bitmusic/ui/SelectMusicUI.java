@@ -7,38 +7,19 @@ import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.MusicMapper;
-import kr.co.bitmusic.mapper.MyMusicMapper;
-import kr.co.bitmusic.mapper.SampleMusicMapper;
-import kr.co.bitmusic.mapper.UserMapper;
 
 public class SelectMusicUI extends BaseBitMusicUI {
-	MusicMapper musicMapper;
-	MyMusicMapper myMusicMapper;
-	UserMapper userMapper;
-	SampleMusicMapper sampleMusicMapper;
+
 	User user = Session.getUser();
-	
-	public SelectMusicUI(MyMusicMapper myMusicMapper) {
-		this.myMusicMapper = myMusicMapper;
-	}
-	public SelectMusicUI(MusicMapper musicMapper) {
-		this.musicMapper = musicMapper;
-	}
-	public SelectMusicUI(SampleMusicMapper sampleMusicMapper) {
-		this.sampleMusicMapper = sampleMusicMapper;
-	}
-	public SelectMusicUI(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-	
 	List<Music> list = null;
+	
 	public void service() {
 		while (true) {
 			switch (menu()) {
-			case 1: list = musicMapper.selectMusicList(); break;
-			case 2: list = musicMapper.selectMusicListBySinger(); break;
-			case 3: list = musicMapper.selectMusicListByTitle(); break;
-			case 4: list = musicMapper.selectMusicListByRelDate(); break;
+			case 1: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList(); break;
+			case 2: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListBySinger(); break;
+			case 3: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByTitle(); break;
+			case 4: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByRelDate(); break;
 			case 5:  break;
 			case 0: returnToAdmin(); break;
 			}
@@ -72,9 +53,9 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	
 	public void returnToAdmin() {
 		if (user.getId().equals("admin")) {
-			new AdminUI(userMapper, musicMapper, sampleMusicMapper).service();
+			new AdminUI().service();
 		} else {
-			new MyMusicUI(userMapper).service(); 
+			new MyMusicUI().service(); 
 		}
 	}
 	

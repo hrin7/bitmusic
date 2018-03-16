@@ -3,17 +3,14 @@ package kr.co.bitmusic.ui;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class SelectUserUI extends BaseBitMusicUI {
-	private UserMapper userMapper;
-	public SelectUserUI(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-	
+
 	public void service() {
-		List<User> userList = userMapper.selectUser();
+		List<User> userList = ((UserMapper)Session.getMapper("userMapper")).selectUser();
 		System.out.printf("전체 %d명\n", userList.size());
 		System.out.println();
 		System.out.println("아이디\t\t이름\t\t나이\t\t성별\t\t이메일\t\t가입일");

@@ -1,28 +1,6 @@
 package kr.co.bitmusic.ui;
 
-import kr.co.bitmusic.mapper.MusicMapper;
-import kr.co.bitmusic.mapper.UserMapper;
-
 public class MyMusicUI extends BaseBitMusicUI {
-	
-	public MyMusicUI() {
-	}
-
-	private UserMapper userMapper;
-	private MusicMapper musicMapper;
-
-	public MyMusicUI(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-
-	public MyMusicUI(MusicMapper musicMapper) {
-		this.musicMapper = musicMapper;
-	}
-	public MyMusicUI(UserMapper userMapper, MusicMapper musicMapper) {
-		this.userMapper = userMapper;
-		this.musicMapper = musicMapper;
-	}
-	
 	
 	public void service() {
 		BaseBitMusicUI ui = null;
@@ -30,16 +8,16 @@ public class MyMusicUI extends BaseBitMusicUI {
 		while (true) {
 			switch (menu()) {
 			case 1:  
-				ui = new SelectMusicUI(musicMapper);
+				ui = new SelectMusicUI();
 				break;
 			case 2: 
 				ui = new MyMusicPlayerUI(); 
 				break;
 			case 3:
-				ui = new UpdateUserUI(userMapper);
+				ui = new UpdateUserUI();
 				break;
 			case 4:
-				ui = new DeleteUserUI(userMapper);
+				ui = new DeleteUserUI();
 				;
 				break;
 				

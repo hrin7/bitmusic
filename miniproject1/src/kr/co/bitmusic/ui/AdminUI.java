@@ -1,35 +1,16 @@
 package kr.co.bitmusic.ui;
 
-import kr.co.bitmusic.mapper.MusicMapper;
-import kr.co.bitmusic.mapper.SampleMusicMapper;
-import kr.co.bitmusic.mapper.UserMapper;
-
 public class AdminUI extends BaseBitMusicUI {
-	UserMapper userMapper;
-	MusicMapper musicMapper;
-	SampleMusicMapper sampleMusicMapper;
-	
-	public AdminUI() {}
-
-	public AdminUI(MusicMapper musicMapper) {
-		this.musicMapper = musicMapper;
-	}
-
-	public AdminUI(UserMapper userMapper, MusicMapper musicMapper, SampleMusicMapper sampleMusicMapper) {
-		this.musicMapper = musicMapper;
-		this.userMapper = userMapper;
-		this.sampleMusicMapper = sampleMusicMapper;
-	}
 	
 	public void service() {
 		BaseBitMusicUI ui = null;
 		while (true) {
 			switch (menu()) {
-			case 1: ui = new SelectUserUI(userMapper); break;
-			case 2: ui = new SelectMusicUI(musicMapper); break;
+			case 1: ui = new SelectUserUI(); break;
+			case 2: ui = new SelectMusicUI(); break;
 			case 3: ui = new InsertMusicUI(); break;
-			case 4: ui = new UpdateMusicUI(musicMapper); break;
-			case 5: ui = new DeleteMusicUI(musicMapper); break;
+			case 4: ui = new UpdateMusicUI(); break;
+			case 5: ui = new DeleteMusicUI(); break;
 			case 0: returnToMain(); break;
 			}
 			ui.service();
