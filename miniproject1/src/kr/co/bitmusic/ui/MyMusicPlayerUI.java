@@ -51,7 +51,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 
 	public int playMenu() {
 		System.out.println();
-		System.out.println("[1.재생][2.이전곡][3.다음곡][4.정지][5.전곡반복][6.랜덤반복][7.노래삭제][8.내음악 가사보기][0.뒤로가기]");
+		System.out.println("[1.재생][2.이전곡][3.다음곡][4.정지][5.전곡재생][6.랜덤재생][7.노래삭제][8.내음악 가사보기][0.뒤로가기]");
 		System.out.println("------------------------------------------------");
 		return getInt("재생 메뉴를 입력하세요 : ");
 	} // playMenu
@@ -119,7 +119,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 					player.play();
 					player.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("재생할 음악 파일이 없습니다.");
 				}
 			} // run
 		}; // Thread
@@ -165,7 +165,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		Thread t = new Thread() {
 			public void run() {
 				try {
-					while(true){
+					if(list.size() != 0){
 						Music m = list.get(pos);
 						try {player.close();} catch (Exception e) {}
 						BufferedInputStream buffer =
@@ -174,16 +174,10 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 						System.out.printf("♬♬ 현재 재생중인 곡은 [%s]의 [%s]입니다. ♬♬\n", m.getSinger(), m.getTitle());
 						player.play();
 						pos++;
-						if(pos == list.size()) {
-							pos = 0;
-						}
-						
 						player.close();
-						
 					}
-					
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("재생할 음악 파일이 없습니다.");
 				}
 			} // run
 		}; // Thread
@@ -200,7 +194,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 
 		Thread t = new Thread() {
 			public void run() {
-				while(true){
+				if(list.size() != 0){
 					Music m = list.get(pos);
 					System.out.println();
 					System.out.println("------------------------------------------------");
@@ -212,12 +206,9 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 						System.out.printf("♬♬ 현재 재생중인 곡은 [%s]의 [%s]입니다. ♬♬\n", m.getSinger(), m.getTitle());
 						player.play();
 						pos++;
-						if(pos == list.size()) {
-							pos = 0;
-						}
 						player.close();
 					} catch (Exception e) {
-						e.printStackTrace();
+						System.out.println("재생할 음악 파일이 없습니다.");
 					}
 				}
 			} // run
@@ -263,7 +254,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		if(m==null) {
 			System.out.println("입력하신 노래 제목을 찾을 수 없습니다.");
 		} else {
-			System.out.printf("%s 노래를 정말 삭제하시겠습니까? 1.삭제 2.취소", m.getTitle());
+			System.out.printf("%s 노래를 정말 삭제하시겠습니까? 1.삭제 2.취소 : ", m.getTitle());
 			anwer = Integer.parseInt(sc.nextLine());
 		}
 		if(anwer == 1) {
