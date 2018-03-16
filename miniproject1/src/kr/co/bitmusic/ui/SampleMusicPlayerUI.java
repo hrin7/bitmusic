@@ -8,7 +8,6 @@ import javazoom.jl.player.Player;
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.SampleMusic;
-import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class SampleMusicPlayerUI extends BaseBitMusicUI {
@@ -66,7 +65,7 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 		int no = Integer.parseInt(sc.nextLine());
 		List<Music> list = null;
 		list = ((SampleMusicMapper) Session.getMapper("userMapper")).selectSampleMusicList();
-		if(no==)
+//		if(no==list.)
 		
 	}
 	
