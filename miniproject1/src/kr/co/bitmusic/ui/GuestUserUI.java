@@ -4,7 +4,6 @@ import java.util.List;
 
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
-import kr.co.bitmusic.domain.SampleMusic;
 import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class GuestUserUI extends BaseBitMusicUI {
