@@ -3,18 +3,19 @@ package kr.co.bitmusic.ui;
 import java.util.List;
 
 import kr.co.bitmusic.common.Session;
+import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.SampleMusic;
 import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class GuestUserUI extends BaseBitMusicUI {
 
 	public void service() {
-		List<SampleMusic> list = null;
+		List<Music> list = null;
 		list = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).selectSampleMusicList();
-		for(SampleMusic sm : list) {
+		for(Music sm : list) {
 			System.out.print("no."+sm.getNo()+"\t");
-//			System.out.print("노래제목 : "+sm.getTitle()+"\t");
-//			System.out.print("가수 : "+sm.getSinger()+"\n");
+			System.out.print("노래제목 : "+sm.getTitle()+"\t");
+			System.out.print("가수 : "+sm.getSinger()+"\n");
 		}
 		
 		SampleMusicPlayerUI smup = new SampleMusicPlayerUI();
