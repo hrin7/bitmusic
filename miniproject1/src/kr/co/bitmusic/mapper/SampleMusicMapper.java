@@ -1,5 +1,10 @@
 package kr.co.bitmusic.mapper;
 
-public class SampleMusicMapper {
+import java.util.List;
+
+import kr.co.bitmusic.domain.SampleMusic;
+
+public interface SampleMusicMapper {
+	List<SampleMusic> selectSampleMusicList();
 
 }
