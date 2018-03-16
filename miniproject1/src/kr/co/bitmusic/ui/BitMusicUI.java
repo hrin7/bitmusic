@@ -1,4 +1,9 @@
 package kr.co.bitmusic.ui;
+
+import java.io.FileInputStream;
+
+import javazoom.jl.player.Player;
+
 // 메인메뉴
 public class BitMusicUI extends BaseBitMusicUI{
 
@@ -18,7 +23,6 @@ public class BitMusicUI extends BaseBitMusicUI{
 			}
 		} catch (Exception e) {
 			System.out.println("존재하지 않는 메뉴번호입니다.");
-			returnToBitMusicUI();
 		}
 	}
 	
@@ -33,8 +37,19 @@ public class BitMusicUI extends BaseBitMusicUI{
 	}
 	
 	public void quit() {
-		System.out.println("BitMusic 프로그램을 종료합니다.");
-		System.exit(0);
+		try {
+
+			Player p = new Player(new FileInputStream("sound/exit.mp3"));
+			System.out.println();
+			System.out.println("♬  비트 뮤직을 종료합니다 ♬");
+			p.play();
+			p.close();
+	
+			System.exit(0);
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void returnToBitMusicUI() {
