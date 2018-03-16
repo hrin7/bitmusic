@@ -1,20 +1,24 @@
 package kr.co.bitmusic.ui;
 
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.SampleMusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class AdminUI extends BaseBitMusicUI {
 	UserMapper userMapper;
 	MusicMapper musicMapper;
+	SampleMusicMapper sampleMusicMapper;
 	
 	public AdminUI() {}
 
 	public AdminUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
 	}
-	public AdminUI(UserMapper userMapper, MusicMapper musicMapper) {
+
+	public AdminUI(UserMapper userMapper, MusicMapper musicMapper, SampleMusicMapper sampleMusicMapper) {
 		this.musicMapper = musicMapper;
 		this.userMapper = userMapper;
+		this.sampleMusicMapper = sampleMusicMapper;
 	}
 	
 	public void service() {

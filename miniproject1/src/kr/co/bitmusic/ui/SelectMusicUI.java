@@ -8,12 +8,14 @@ import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.MusicMapper;
 import kr.co.bitmusic.mapper.MyMusicMapper;
+import kr.co.bitmusic.mapper.SampleMusicMapper;
 import kr.co.bitmusic.mapper.UserMapper;
 
 public class SelectMusicUI extends BaseBitMusicUI {
 	MusicMapper musicMapper;
 	MyMusicMapper myMusicMapper;
 	UserMapper userMapper;
+	SampleMusicMapper sampleMusicMapper;
 	User user = Session.getUser();
 	
 	public SelectMusicUI(MyMusicMapper myMusicMapper) {
@@ -21,6 +23,9 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	}
 	public SelectMusicUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
+	}
+	public SelectMusicUI(SampleMusicMapper sampleMusicMapper) {
+		this.sampleMusicMapper = sampleMusicMapper;
 	}
 	public SelectMusicUI(UserMapper userMapper) {
 		this.userMapper = userMapper;
@@ -67,7 +72,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	
 	public void returnToAdmin() {
 		if (user.getId().equals("admin")) {
-			new AdminUI(userMapper, musicMapper).service();
+			new AdminUI(userMapper, musicMapper, sampleMusicMapper).service();
 		} else {
 			new MyMusicUI(userMapper).service(); 
 		}
