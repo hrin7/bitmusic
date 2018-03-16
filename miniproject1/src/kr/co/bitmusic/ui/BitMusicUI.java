@@ -30,7 +30,7 @@ public class BitMusicUI extends BaseBitMusicUI{
 			while (true) {
 				switch (menu()) {
 				case 1: ui = new LogInBitMusicUI(userMapper, musicMapper, sampleMusicMapper); break;
-				case 2: ui = new MyMusicPlayerUI(); break;
+				case 2: ui = new GuestUserUI(sampleMusicMapper); break;
 				case 3: ui = new JoinUserUI(userMapper); break;
 				case 4: ui = new SearchUserUI(userMapper); break;
 				case 0: quit(); break;
