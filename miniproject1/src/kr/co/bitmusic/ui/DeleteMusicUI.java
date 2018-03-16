@@ -2,27 +2,11 @@ package kr.co.bitmusic.ui;
 
 import java.util.List;
 
+import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.mapper.MusicMapper;
-import kr.co.bitmusic.mapper.SampleMusicMapper;
-import kr.co.bitmusic.mapper.UserMapper;
 
 public class DeleteMusicUI extends BaseBitMusicUI {
-	private UserMapper userMapper;
-	private MusicMapper musicMapper;
-	private SampleMusicMapper sampleMusicMapper;
-	
-	public DeleteMusicUI() {}
-	
-	public DeleteMusicUI(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-	public DeleteMusicUI(MusicMapper musicMapper) {
-		this.musicMapper = musicMapper;
-	}
-	public DeleteMusicUI(SampleMusicMapper sampleMusicMapper) {
-		this.sampleMusicMapper = sampleMusicMapper;
-	}
 	
 	public void service() {
 		while (true) {
@@ -45,7 +29,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	
 	public void deleteMusicTitle() {
-		List<Music> list = musicMapper.selectMusicTitle(getStr("검색할 제목 키워드를 입력하세요 : "));
+		List<Music> list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicTitle(getStr("검색할 제목 키워드를 입력하세요 : "));
 		System.out.printf("검색 된 노래 총 %d개\n", list.size());
 		System.out.println("====================");
 		for (Music m : list) {
@@ -57,7 +41,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void deleteMusicSinger() {
-		List<Music> list = musicMapper.selectMusicSinger(getStr("검색할 가수 키워드를 입력하세요 : "));
+		List<Music> list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicSinger(getStr("검색할 가수 키워드를 입력하세요 : "));
 		System.out.printf("검색 된 노래 총 %d개\n", list.size());
 		System.out.println("====================");
 		for (Music m : list) {
@@ -70,7 +54,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	public void deleteMusic() {
 		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
-		int result = musicMapper.deleteMusic(no);
+		int result = ((MusicMapper)Session.getMapper("musicMapper")).deleteMusic(no);
 		
 		if (result == 0) {
 			System.out.println("입력된 번호는 존재하지 않습니다.");
@@ -80,7 +64,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void returnToAdmin() {
-		new AdminUI(userMapper, musicMapper, sampleMusicMapper).service();
+		new AdminUI().service();
 	}
 	
 }

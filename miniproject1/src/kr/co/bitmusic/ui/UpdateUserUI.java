@@ -7,10 +7,6 @@ import kr.co.bitmusic.mapper.UserMapper;
 public class UpdateUserUI extends BaseBitMusicUI {
 	
 	User saved = Session.getUser();
-	private UserMapper userMapper;
-	public UpdateUserUI(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
 	
 	public void service() {
 			while (true) {
@@ -19,17 +15,17 @@ public class UpdateUserUI extends BaseBitMusicUI {
 				case 1:
 					user.setId(saved.getId());
 					user.setPassword(getStr("변경할 비밀번호를 입력하세요 : "));
-					userMapper.updateUserPassword(user);
+					((UserMapper)Session.getMapper("userMapper")).updateUserPassword(user);
 					break;
 				case 2: 
 					user.setId(saved.getId());
 					user.setPasswordHint(getStr("변경할 비밀번호 힌트를 입력하세요 : "));
-					userMapper.updateUserPasswordHint(user);
+					((UserMapper)Session.getMapper("userMapper")).updateUserPasswordHint(user);
 					break;
 				case 3: 
 					user.setId(saved.getId());
 					user.setEmail(getStr("변경할 이메일을 입력하세요 : "));
-					userMapper.updateUserEmail(user);
+					((UserMapper)Session.getMapper("userMapper")).updateUserEmail(user);
 					break;
 				case 0: returnToFormerStep(); break;
 				}

@@ -2,29 +2,19 @@ package kr.co.bitmusic.ui;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import kr.co.bitmusic.domain.SampleMusic;
-import kr.co.bitmusic.mapper.SampleMusicMapper;
-import kr.co.bitmusic.ui.BaseBitMusicUI;
 
 public class SampleMusicPlayerUI extends BaseBitMusicUI {
 //목록 SHOW
 	
 //1.전체 2. 한곡씩 
-	
-	private SampleMusicMapper sampleMusicMapper;
-	public SampleMusicPlayerUI(SampleMusicMapper sampleMusicMapper) {
-		this.sampleMusicMapper = sampleMusicMapper;
-	}
+
 //	List<SampleMusic> list = null;
 
 	public void service() {
-//		list = sampleMusicMapper.selectSampleMusicList();
+//		list = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).selectSampleMusicList();
 //		for(SampleMusic sm : list) {
 //			System.out.print("no."+sm.getNo()+"\t");
 //			System.out.print("노래제목 : "+sm.getNo()+"\t");
@@ -85,7 +75,7 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 	}
 	
 	public void returnToFormerStep() {
-		GuestUserUI gui = new GuestUserUI(sampleMusicMapper);
+		GuestUserUI gui = new GuestUserUI();
 		gui.service();
 	}
 }

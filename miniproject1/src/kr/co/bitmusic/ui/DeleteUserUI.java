@@ -7,15 +7,11 @@ import kr.co.bitmusic.mapper.UserMapper;
 public class DeleteUserUI extends BaseBitMusicUI {
 	
 	User saved = Session.getUser();
-	private UserMapper userMapper;
-	public DeleteUserUI(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
 	
 	public void service() {
 		User user = new User();
 		user.setId(saved.getId());
-		userMapper.deleteUser(user);
+		((UserMapper)Session.getMapper("userMapper")).deleteUser(user);
 		System.out.println("회원탈퇴가 완료되었습니다.");
 	}
 
