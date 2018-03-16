@@ -13,6 +13,7 @@ public interface MusicMapper {
 	
 	List<Music> selectMusicTitle(String title);
 	List<Music> selectMusicSinger(String singer);
+	Music selectMusicNo(int no);
 	
 	int updateMusicTitle(Music music);
 	int updateMusicSinger(Music music);

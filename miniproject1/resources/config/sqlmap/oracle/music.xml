@@ -106,6 +106,13 @@
 		 where singer like '%' || #{singer} || '%'
 	</select>
 	
+	<!-- 번호로 검색하여 검색된 결과 나오는 쿼리문 -->
+	<select id="selectMusicNo" parameterType="int" resultMap="musicMap">
+		select no, singer, title
+		  from tb_music
+		 where no = #{no}
+	</select>
+	
 	<delete id="deleteMusic" parameterType="int">
 		delete 
 		  from tb_music
