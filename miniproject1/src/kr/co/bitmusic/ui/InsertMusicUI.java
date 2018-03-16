@@ -3,18 +3,19 @@ package kr.co.bitmusic.ui;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
+import kr.co.bitmusic.domain.SampleMusic;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class InsertMusicUI extends BaseBitMusicUI {
-	private MusicMapper musicMapper;
 	
 	public InsertMusicUI() {}
 
-	public InsertMusicUI(MusicMapper musicMapper) {
-		this.musicMapper = musicMapper;
-	}
 	
 	public void service() {
 		Music m = new Music();
@@ -30,8 +31,22 @@ public class InsertMusicUI extends BaseBitMusicUI {
 			e.printStackTrace();
 		}
 		m.setRelDate(d);
-		m.setMusicPath(getStr("경로 : "));
-		musicMapper.insertMusic(m);
+		m.setMusicPath(getStr("완곡 경로 : "));
+		
+		SampleMusic sm = new SampleMusic();
+		sm.setSampleMusicPath(getStr("샘플 뮤직 경로 : "));
+		
+		((MusicMapper) Session.getMapper("musicMapper")).insertMusic(m);
+		sm.setNo(m.getNo());
+
+		System.out.println("----" +sm.getNo());
+		
+		try {
+			((SampleMusicMapper) Session.getMapper("sampleMusicMapper")).insertSampleMusic(sm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		System.out.printf("%s-%s노래가 추가되었습니다.\n", m.getSinger(), m.getTitle());
 	}
 	

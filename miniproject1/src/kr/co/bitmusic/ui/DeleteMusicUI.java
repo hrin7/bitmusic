@@ -4,14 +4,24 @@ import java.util.List;
 
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.SampleMusicMapper;
+import kr.co.bitmusic.mapper.UserMapper;
 
 public class DeleteMusicUI extends BaseBitMusicUI {
+	private UserMapper userMapper;
 	private MusicMapper musicMapper;
+	private SampleMusicMapper sampleMusicMapper;
 	
 	public DeleteMusicUI() {}
 	
+	public DeleteMusicUI(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
 	public DeleteMusicUI(MusicMapper musicMapper) {
 		this.musicMapper = musicMapper;
+	}
+	public DeleteMusicUI(SampleMusicMapper sampleMusicMapper) {
+		this.sampleMusicMapper = sampleMusicMapper;
 	}
 	
 	public void service() {
@@ -70,7 +80,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void returnToAdmin() {
-		new AdminUI(musicMapper).service();
+		new AdminUI(userMapper, musicMapper, sampleMusicMapper).service();
 	}
 	
 }

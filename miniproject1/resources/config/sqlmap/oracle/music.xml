@@ -39,6 +39,10 @@
 	</select>
 	
 	<insert id="insertMusic" parameterType="music">
+		<selectKey resultType="int" keyProperty="no" order="BEFORE">
+			select s_music_no.nextval from dual 
+		</selectKey>
+	
 		insert into tb_music (
 			no, 
 			title, 
@@ -48,7 +52,7 @@
 			rel_date, 
 			music_path
 		) values (
-			s_music_no.nextval,
+			#{no},
 			#{title},
 			#{singer}, 
 			#{genre}, 

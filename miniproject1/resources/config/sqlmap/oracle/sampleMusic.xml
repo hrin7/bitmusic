@@ -15,5 +15,15 @@
 	   on sm.no = m.no
 	   order by sm.no 
 	</select>
+	
+	<insert id="insertSampleMusic" parameterType="samplemusic">
+	
+		insert into tb_sample_music (
+			no, sample_music_path
+		) values (
+			#{no}, 
+			#{sampleMusicPath}
+		)
+	</insert>
 
 </mapper>
