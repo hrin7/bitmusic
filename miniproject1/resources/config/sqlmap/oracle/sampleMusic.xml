@@ -16,7 +16,7 @@
 	   order by sm.no 
 	</select>
 	
-	<select id = "sampleMusicChooseToPlay" parameterType="int" resultType="samplemusic">
+	<select id = "sampleMusicChooseToPlay" parameterType="int" resultMap="sampleMusicMap">
 	   select sample_music_path
 	   from tb_sample_music
 	   where no = #{no}

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javazoom.jl.player.Player;
 import kr.co.bitmusic.common.Session;
-import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.SampleMusic;
 import kr.co.bitmusic.mapper.SampleMusicMapper;
 
@@ -15,15 +14,12 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 	public void service() {
 
 		while(true) {
-			SampleMusic sm = new SampleMusic();
 			switch(menu()) {
 			case 1 : 
 				allPlay();
 				break;
 			case 2 :
-				// 번호 입력 받아서 한 곡씩 선택 
-				sm.setNo(getInt("미리듣기할 곡 번호를 입력하세요 : "));
-				//듣기
+				chooseToPlay();
 				break;
 			case 0 :
 				returnToFormerStep();
@@ -58,22 +54,20 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 	}
 	
 	public void chooseToPlay() {
-		File file = new File("samplemusic");
-		File[] files = file.listFiles();
-		
-		System.out.print("미리듣기할 곡의 번호를 입력하세요 : ");
-		int no = Integer.parseInt(sc.nextLine());
-		
-//		for(File f : files) {
-//			if(no==f.get)
-//		}
-		
-//		List<Music> list = null;
-//		list = ((SampleMusicMapper) Session.getMapper("userMapper")).selectSampleMusicList();
-//		if(no==list.)
-		
+		int no = getInt("미리듣기할 곡 번호를 입력하세요 : ");
+		SampleMusic chooseToPlay = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).sampleMusicChooseToPlay(no);
+		System.out.println(chooseToPlay);
+			try {
+				BufferedInputStream buffer =
+						new BufferedInputStream(new FileInputStream(chooseToPlay.getSampleMusicPath()));
+				player = new Player(buffer);
+				player.play();
+			} catch (Exception e) {
+				System.out.println("음악 재생 중 오류가 발생하였습니다.");
+				e.printStackTrace();
+			}
 	}
-	
+
 	public void returnToFormerStep() {
 		GuestUserUI gui = new GuestUserUI();
 		gui.service();

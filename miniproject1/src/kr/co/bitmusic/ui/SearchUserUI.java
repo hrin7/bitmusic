@@ -24,7 +24,6 @@ public class SearchUserUI extends BaseBitMusicUI {
 					User pw = ((UserMapper)Session.getMapper("userMapper")).selectUserSearchPassword(user);
 					System.out.println("비밀번호는 " + pw.getPassword() + "입니다.");
 					break;
-	
 				}
 			}
 		} catch (Exception e) {
