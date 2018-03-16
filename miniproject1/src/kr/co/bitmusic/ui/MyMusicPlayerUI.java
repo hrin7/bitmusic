@@ -120,6 +120,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 					player.close();
 				} catch (Exception e) {
 					System.out.println("재생할 음악 파일이 없습니다.");
+					new MyMusicUI().service();
 				}
 			} // run
 		}; // Thread
@@ -161,7 +162,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		System.out.println();
 		System.out.println("------------------------------------------------");
 		System.out.printf("♬♬ 순차재생을 시작합니다. ♬♬\n");
-		
+
 		Thread t = new Thread() {
 			public void run() {
 				try {
@@ -178,11 +179,12 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 					}
 				} catch (Exception e) {
 					System.out.println("재생할 음악 파일이 없습니다.");
+					new MyMusicUI().service();
 				}
 			} // run
 		}; // Thread
 		t.start();
-		
+
 	} // playAll
 
 
@@ -209,6 +211,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 						player.close();
 					} catch (Exception e) {
 						System.out.println("재생할 음악 파일이 없습니다.");
+						new MyMusicUI().service();
 					}
 				}
 			} // run
@@ -227,22 +230,25 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		}
 		String title = getStr("가사보기를 할 노래 제목을 입력하세요 : ");
 		Music m = ((MyMusicMapper)Session.getMapper("myMusicMapper")).searchMyMusicNo(title);
-		
+
 		if(m == null) {
-			getStr("입력하신 제목을 찾을 수 없습니다.");
+			System.out.println("입력하신 제목을 찾을 수 없습니다.");
+			subMenu();
 		}
-		
+
 		int lyricsNo = m.getNo(); 
 		String url = "C:/java-lec/git/bitmusic/miniproject1/lyrics/" + lyricsNo + ".txt";
 		try { Desktop.getDesktop().browse(new URI(url));
 		} catch (IOException e) { System.out.println("가사 파일이 없습니다.");
-		} catch (URISyntaxException e) { System.out.println("가사 파일이 없습니다."); }
+		new MyMusicUI().service();
+		} catch (URISyntaxException e) { System.out.println("가사 파일이 없습니다.");
+		new MyMusicUI().service();}
 		subMenu();
 	}
 
 	// 음악 삭제
 	public void delete() {
-						
+
 		Map<String, String> param = new HashMap<>();
 		int anwer=0;
 		System.out.println();
@@ -259,11 +265,11 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		}
 		if(anwer == 1) {
 			int result = ((MyMusicMapper)Session.getMapper("myMusicMapper")).deleteMyMusicOne(param);
-				System.out.println("노래가 삭제되었습니다.");
+			System.out.println("노래가 삭제되었습니다.");
 		}else if(anwer==2) {
 			System.out.println("삭제를 취소하였습니다.");
 		}
-		
+
 	} // delete
 
 	// 뒤로가기
