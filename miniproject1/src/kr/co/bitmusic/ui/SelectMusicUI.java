@@ -68,11 +68,9 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	public void returnToAdmin() {
 		if (user.getId().equals("admin")) {
 			new AdminUI(userMapper, musicMapper).service();
-			return;
 		} else {
 			new MyMusicUI(userMapper).service(); 
 		}
-		
 	}
 	
 }
