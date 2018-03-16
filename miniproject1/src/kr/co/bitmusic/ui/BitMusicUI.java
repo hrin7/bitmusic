@@ -21,16 +21,22 @@ public class BitMusicUI extends BaseBitMusicUI{
 		
 	
 	public void service() {
-		BaseBitMusicUI ui = null;
-		while (true) {
-			switch (menu()) {
-			case 1: ui = new LogInBitMusicUI(userMapper, musicMapper); break;
-			case 2: ui = new MyMusicPlayerUI(); break;
-			case 3: ui = new JoinUserUI(userMapper); break;
-			case 4: ui = new SearchUserUI(userMapper); break;
-			case 0: quit(); break;
+		
+		try {
+			BaseBitMusicUI ui = null;
+			while (true) {
+				switch (menu()) {
+				case 1: ui = new LogInBitMusicUI(userMapper, musicMapper); break;
+				case 2: ui = new MyMusicPlayerUI(); break;
+				case 3: ui = new JoinUserUI(userMapper); break;
+				case 4: ui = new SearchUserUI(userMapper); break;
+				case 0: quit(); break;
+				}
+				ui.service();
 			}
-			ui.service();
+		} catch (Exception e) {
+			System.out.println("메뉴번호를 다시 입력해 주세요.");
+			returnToBitMusicUI();
 		}
 	}
 	
@@ -49,4 +55,8 @@ public class BitMusicUI extends BaseBitMusicUI{
 		System.exit(0);
 	}
 	
+	public void returnToBitMusicUI() {
+		BitMusicUI bui = new BitMusicUI();
+		bui.service();
+	}
 }
