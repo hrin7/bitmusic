@@ -2,7 +2,6 @@ package kr.co.bitmusic.ui;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.List;
 
 import javazoom.jl.player.Player;
 import kr.co.bitmusic.common.Session;
@@ -22,18 +21,17 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 				chooseToPlay();
 				break;
 			case 0 :
-				returnToFormerStep();
+				returnToMain();
 				break;
 			}
 		}
 	}
 
 	private int menu( ) {
-		System.out.println("--------------------");
+		System.out.println();
 		System.out.println("1. 미리듣기 전체 재생");
 		System.out.println("2. 미리듣기 선택 재생");
-		//3. 노래 멈춤
-		System.out.println("0. 이전 메뉴로 돌아가기");
+		System.out.println("0. 메인 메뉴로 돌아가기");
 		return getInt("실행할 메뉴번호를 입력하세요 : ");
 	}
 	
@@ -68,8 +66,8 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 			}
 	}
 
-	public void returnToFormerStep() {
-		GuestUserUI gui = new GuestUserUI();
-		gui.service();
+	public void returnToMain() {
+		BitMusicUI bmu = new BitMusicUI();
+		bmu.service();
 	}
 }

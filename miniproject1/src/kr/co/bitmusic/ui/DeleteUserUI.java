@@ -13,6 +13,10 @@ public class DeleteUserUI extends BaseBitMusicUI {
 		user.setId(saved.getId());
 		((UserMapper)Session.getMapper("userMapper")).deleteUser(user);
 		System.out.println("회원탈퇴가 완료되었습니다.");
+		returnToMain();
 	}
 
+	public void returnToMain() {
+		new BitMusicUI().service();
+	}
 }

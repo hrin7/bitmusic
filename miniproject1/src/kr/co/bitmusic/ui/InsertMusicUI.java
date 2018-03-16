@@ -15,6 +15,7 @@ public class InsertMusicUI extends BaseBitMusicUI {
 	public void service() {
 		Music m = new Music();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println();
 		m.setSinger(getStr("가수 : "));
 		m.setTitle(getStr("노래 제목 : "));
 		m.setGenre(getStr("장르 : "));
@@ -34,15 +35,13 @@ public class InsertMusicUI extends BaseBitMusicUI {
 		((MusicMapper) Session.getMapper("musicMapper")).insertMusic(m);
 		sm.setNo(m.getNo());
 
-		System.out.println("----" +sm.getNo());
-		
 		try {
 			((SampleMusicMapper) Session.getMapper("sampleMusicMapper")).insertSampleMusic(sm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.printf("%s-%s노래가 추가되었습니다.\n", m.getSinger(), m.getTitle());
+		System.out.printf("%s-%s 노래가 추가되었습니다.\n", m.getSinger(), m.getTitle());
 	}
 	
 }

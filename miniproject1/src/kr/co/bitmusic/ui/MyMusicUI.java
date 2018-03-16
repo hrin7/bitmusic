@@ -18,7 +18,6 @@ public class MyMusicUI extends BaseBitMusicUI {
 				break;
 			case 4:
 				ui = new DeleteUserUI();
-				;
 				break;
 				
 			case 0:
@@ -31,6 +30,8 @@ public class MyMusicUI extends BaseBitMusicUI {
 	}
 
 	private int menu() {
+		System.out.println();
+		System.out.println("[회원 메뉴입니다]");
 		System.out.println("1. 음악 전체 목록 확인");
 		System.out.println("2. 내 음악 목록 확인");
 		System.out.println("3. 내 정보 수정");

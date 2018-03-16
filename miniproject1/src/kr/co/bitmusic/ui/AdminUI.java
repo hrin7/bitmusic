@@ -18,6 +18,8 @@ public class AdminUI extends BaseBitMusicUI {
 	}
 	
 	public int menu() {
+		System.out.println();
+		System.out.println("[관리자 메뉴입니다]");
 		System.out.println("1. 회원 목록 확인");
 		System.out.println("2. 음악 전체 목록 확인");
 		System.out.println("3. 음악 추가");

@@ -12,7 +12,6 @@ public class MusicPlay {
 		try {
 			Player p = new Player(new FileInputStream("sound/welcom.mp3"));
 			System.out.println("♬  비트 뮤직에 오신걸 환영합니다 ♬");
-			System.out.println();
 			p.play();
 			p.close();
 			

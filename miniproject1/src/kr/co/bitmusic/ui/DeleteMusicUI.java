@@ -21,15 +21,12 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	}
 	
 	public int menu() {
-		System.out.println("-----------------");
-		System.out.println("1. 노래번호로 삭제하기");
-		System.out.println("2. 노래제목으로 삭제하기");
-		System.out.println("3. 가수이름으로 삭제하기");
-		System.out.println("0. 뒤로가기");
-		System.out.println("-----------------");
+		System.out.println();
+		System.out.println("[1.노래번호로 삭제] [2.노래제목으로 삭제] [3.가수이름으로 삭제] [0.뒤로가기]");
 		return getInt("삭제할 메뉴를 입력하세요 : ");
 	}
 	
+	// 수정할부분
 	public void deleteMusicNo() {
 		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
 		Music m = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicNo(no);
@@ -50,24 +47,26 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	public void deleteMusicTitle() {
 		List<Music> list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicTitle(getStr("검색할 제목 키워드를 입력하세요 : "));
+		System.out.println();
 		System.out.printf("검색 된 노래 총 %d개\n", list.size());
-		System.out.println("====================");
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		for (Music m : list) {
 			System.out.printf("%d. %s - %s\n", m.getNo(), m.getSinger(), m.getTitle());
 		}
-		System.out.println("====================");
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		
 		deleteMusic();
 	}
 	
 	public void deleteMusicSinger() {
 		List<Music> list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicSinger(getStr("검색할 가수 키워드를 입력하세요 : "));
+		System.out.println();
 		System.out.printf("검색 된 노래 총 %d개\n", list.size());
-		System.out.println("====================");
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		for (Music m : list) {
 			System.out.printf("%d. %s - %s\n", m.getNo(), m.getSinger(), m.getTitle());
 		}
-		System.out.println("====================");
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		
 		deleteMusic();
 	}

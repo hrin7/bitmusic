@@ -27,6 +27,8 @@ public class BitMusicUI extends BaseBitMusicUI{
 	}
 	
 	private int menu() {
+		System.out.println();
+		System.out.println("[메인 메뉴입니다]");
 		System.out.println("1. 로그인");
 		System.out.println("2. 비회원 접속");
 		System.out.println("3. 회원가입");

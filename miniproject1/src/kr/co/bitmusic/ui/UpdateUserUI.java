@@ -34,10 +34,8 @@ public class UpdateUserUI extends BaseBitMusicUI {
 	}
 	
 	private int menu() {
-		System.out.println("1. 비밀번호 변경");
-		System.out.println("2. 비밀번호 힌트 변경");
-		System.out.println("3. 이메일 변경");
-		System.out.println("0. 이전 메뉴로 돌아가기");
+		System.out.println();
+		System.out.println("[1.비밀번호 변경] [2.비밀번호 힌트 변경] [3.이메일 변경] [0.뒤로가기]");
 		return getInt("수정할 메뉴번호를 입력하세요 : ");
 	}
 	

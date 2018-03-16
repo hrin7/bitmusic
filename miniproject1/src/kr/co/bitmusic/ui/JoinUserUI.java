@@ -8,6 +8,7 @@ public class JoinUserUI extends BaseBitMusicUI {
 
 	public void service() {
 		User userVO = new User();
+		System.out.println();
 		userVO.setId(getStr("Id를 설정하세요 : "));
 		userVO.setPassword(getStr("비밀번호를 설정하세요 : "));
 		userVO.setPasswordHint(getStr("비밀번호 힌트를 입력하세요(ex.좋아하는 책, 좋아하는 영화 등) : "));
@@ -16,6 +17,7 @@ public class JoinUserUI extends BaseBitMusicUI {
 		userVO.setGender(getStr("성별을 입력하세요(남 or 여) : "));
 		userVO.setEmail(getStr("이메일을 입력하세요 : "));
 		((UserMapper)Session.getMapper("userMapper")).insertUser(userVO);
+		System.out.println();
 		System.out.println("회원가입이 완료되었습니다.");
 	}
 

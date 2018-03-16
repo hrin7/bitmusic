@@ -29,20 +29,17 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	}
 	
 	public int menu() {
-		System.out.println("--------------------");
-		System.out.println("1. 번호 순");
-		System.out.println("2. 가수 이름 순");
-		System.out.println("3. 노래 제목 순");
-		System.out.println("4. 발매일순");
-		System.out.println("5. 인기순");
-		System.out.println("0. 이전 메뉴로 돌아가기");
-		System.out.println("--------------------");
+		System.out.println();
+		System.out.println("[1.번호순] [2.가수이름순] [3.노래제목순] [4.발매일순] [5.인기순] [0.뒤로가기]");
 		return getInt("정렬할 메뉴번호를 입력하세요 : ");
 	}
 	
 	public void selectMusicList() {
+		System.out.println();
 		System.out.printf("전체 %d개\n", list.size());
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		System.out.println("번호\t가수\t\t\t제목\t\t\t\t발매일");
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		for (Music m : list) {
 			System.out.printf("%d\t%s\t\t\t%s\t\t\t\t%s\n", m.getNo(), m.getSinger(), m.getTitle(), sdf.format(m.getRelDate()));
@@ -50,6 +47,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		if (list.isEmpty()) {
 			System.out.println("노래가 존재하지 않습니다.");
 		}
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 	}
 	
 	public void returnToAdmin() {
