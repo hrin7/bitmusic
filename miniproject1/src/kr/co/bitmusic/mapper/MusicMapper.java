@@ -22,4 +22,5 @@ public interface MusicMapper {
 	int updateMusicMusicPath(Music music);
 	
 	int deleteMusic(int no);
+	
 }
