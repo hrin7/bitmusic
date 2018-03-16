@@ -64,9 +64,57 @@
 		 where title like '%' || #{title} || '%'
 	</select>
 	
-	<update id="updateMusic" parameterType="music">
+	<update id="updateMusicTitle" parameterType="music">
 		update tb_music
 		   set title = #{title}
+	 	 where no = #{no}
+	</update>
+	
+	<select id="selectMusicUpdateSinger" parameterType="string" resultMap="musicMap">
+		select no, singer
+		  from tb_music
+		 where singer like '%' || #{singer} || '%'
+	</select>
+	
+	<update id="updateMusicSinger" parameterType="music">
+		update tb_music
+		   set singer = #{singer}
+	 	 where no = #{no}
+	</update>
+	
+	<select id="selectMusicUpdateGenre" parameterType="string" resultMap="musicMap">
+		select no, genre
+		  from tb_music
+		 where singer like '%' || #{genre} || '%'
+	</select>
+	
+	<update id="updateMusicGenre" parameterType="music">
+		update tb_music
+		   set genre = #{genre}
+	 	 where no = #{no}
+	</update>
+	
+	<select id="selectMusicUpdateRelDate" parameterType="string" resultMap="musicMap">
+		select no, rel_date
+		  from tb_music
+		 where rel_date like '%' || #{relDate} || '%'
+	</select>
+	
+	<update id="updateMusicRelDate" parameterType="music">
+		update tb_music
+		   set rel_date = #{relDate}
+	 	 where no = #{no}
+	</update>
+	
+	<select id="selectMusicUpdateMusicPath" parameterType="string" resultMap="musicMap">
+		select no, music_path
+		  from tb_music
+		 where music_path like '%' || #{musicPath} || '%'
+	</select>
+	
+	<update id="updateMusicMusicPath" parameterType="music">
+		update tb_music
+		   set music_path = #{musicPath}
 	 	 where no = #{no}
 	</update>
 	
