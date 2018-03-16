@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.bitmusic.domain.Music;
+import kr.co.bitmusic.domain.MyMusic;
 
 public interface MyMusicMapper {
 
@@ -17,4 +18,9 @@ public interface MyMusicMapper {
 	public Music selectMyMusicOne (Map<String, String> param);
 	
 	public Music searchMyMusic (Map<String, String> param);
+	
+	public Music searchMyMusicNo (String musicNo);
+	
+	public int insertMyMusicNo(MyMusic m);
+	
 }

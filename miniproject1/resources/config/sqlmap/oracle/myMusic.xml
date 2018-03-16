@@ -50,6 +50,21 @@
 			and m2.id = #{id}
 	</select>
 	
+	<select id="searchMyMusicNo" parameterType="string" resultType="Music">
+	select m1.no, m1.title, m1.singer, m1.genre, m1.music_path
+		from tb_music m1, tb_my_music m2, tb_user u
+		where u.id = m2.id
+		and m2.no = m1.no
+		and m1.title like '%' || #{title} || '%'
+	
+	</select>
+	
+	<insert id="insertMyMusicNo" parameterType="myMusic">
+		insert into tb_my_music
+			values(#{no}, #{id})
+	</insert>
+	
+	
 	<delete id="deleteMyMusicOne" parameterType="map">
 		delete tb_my_music
 			where id = #{id} 
