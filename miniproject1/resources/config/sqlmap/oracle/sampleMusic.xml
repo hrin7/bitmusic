@@ -17,7 +17,6 @@
 	</select>
 	
 	<insert id="insertSampleMusic" parameterType="samplemusic">
-	
 		insert into tb_sample_music (
 			no, sample_music_path
 		) values (
@@ -25,5 +24,11 @@
 			#{sampleMusicPath}
 		)
 	</insert>
+	
+	<delete id="deleteSampleMusic" parameterType="int">
+		delete 
+		  from tb_sample_music
+		 where no = #{no}
+	</delete>
 
 </mapper>
