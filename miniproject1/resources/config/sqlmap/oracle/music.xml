@@ -18,6 +18,7 @@
 	<select id="selectMusicList" resultMap="musicMap">
 		select no, singer, title, rel_date
 		  from tb_music
+		 order by no
 	</select>
 	
 	<select id="selectMusicListBySinger" resultMap="musicMap">

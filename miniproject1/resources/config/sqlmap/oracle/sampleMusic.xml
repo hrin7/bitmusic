@@ -36,5 +36,5 @@
 		  from tb_sample_music
 		 where no = #{no}
 	</delete>
-
+	
 </mapper>

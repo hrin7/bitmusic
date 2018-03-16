@@ -10,4 +10,5 @@ public interface SampleMusicMapper {
 	SampleMusic sampleMusicChooseToPlay(int no);
 	void insertSampleMusic(SampleMusic sm);
 	void deleteSampleMusic(int no);
+	void updateSampleMusicPath(Music music);
 }

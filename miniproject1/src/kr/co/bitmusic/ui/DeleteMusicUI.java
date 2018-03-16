@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class DeleteMusicUI extends BaseBitMusicUI {
 	
@@ -30,26 +31,20 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void deleteMusicNo() {
-		try {
-			int no = getInt("삭제할 노래 번호를 입력하세요 : ");
-			Music m = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicNo(no);
-			System.out.printf("%d. %s - %s ", no, m.getSinger(), m.getTitle());
-			int delNo = getInt("노래를 삭제하시겠습니까?(1-예  2-아니오) ");
-			System.out.println(delNo);
-			if (delNo == 1) {
-				System.out.println(delNo);
-				int result = ((MusicMapper)Session.getMapper("musicMapper")).deleteMusic(no);
-				System.out.println(result);
-				if (result == 0) {
-					System.out.println("입력된 번호는 존재하지 않습니다.");
-				} else {
-					System.out.println("노래가 삭제되었습니다.");
-				}
+		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
+		Music m = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicNo(no);
+		System.out.printf("%d. %s - %s ", no, m.getSinger(), m.getTitle());
+		int delNo = getInt("노래를 삭제하시겠습니까?(1-예  2-아니오) ");
+		if (delNo == 1) {
+			int result = ((MusicMapper)Session.getMapper("musicMapper")).deleteMusic(no);
+			((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).deleteSampleMusic(no);
+			if (result == 0) {
+				System.out.println("입력된 번호는 존재하지 않습니다.");
 			} else {
-				System.out.println("이전메뉴로 돌아갑니다.");
+				System.out.println("노래가 삭제되었습니다.");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			System.out.println("이전메뉴로 돌아갑니다.");
 		}
 	}
 	
@@ -79,6 +74,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	public void deleteMusic() {
 		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
+		((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).deleteSampleMusic(no);
 		int result = ((MusicMapper)Session.getMapper("musicMapper")).deleteMusic(no);
 		
 		if (result == 0) {

@@ -14,6 +14,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	List<Music> list = null;
 	
 	public void service() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
 		while (true) {
 			switch (menu()) {
 			case 1: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList(); break;
