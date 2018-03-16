@@ -12,5 +12,7 @@ public interface MyMusicMapper {
 	
 	public int deleteMyMusicOne (Map<String, String> param);
 	
-	public Music selectMyMusicOne (String title);
+	public Music selectMyMusicOne (Map<String, String> param);
+	
+	public Music searchMyMusic (Map<String, String> param);
 }
