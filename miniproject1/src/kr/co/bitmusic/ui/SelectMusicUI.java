@@ -5,8 +5,10 @@ import java.util.List;
 
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
+import kr.co.bitmusic.domain.MyMusic;
 import kr.co.bitmusic.domain.User;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.MyMusicMapper;
 
 public class SelectMusicUI extends BaseBitMusicUI {
 
@@ -21,7 +23,8 @@ public class SelectMusicUI extends BaseBitMusicUI {
 			case 2: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListBySinger(); break;
 			case 3: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByTitle(); break;
 			case 4: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByRelDate(); break;
-			case 5:  break;
+			case 5: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByGetCnt(); break;
+			case 6: buyMusic(); break;
 			case 0: returnToAdmin(); break;
 			}
 			selectMusicList();
@@ -30,7 +33,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	
 	public int menu() {
 		System.out.println();
-		System.out.println("[1.번호순] [2.가수이름순] [3.노래제목순] [4.발매일순] [5.인기순] [0.뒤로가기]");
+		System.out.println("[1.번호순] [2.가수이름순] [3.노래제목순] [4.발매일순] [5.인기순] [6.노래담기] [0.뒤로가기]");
 		return getInt("정렬할 메뉴번호를 입력하세요 : ");
 	}
 	
@@ -49,6 +52,44 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		}
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 	}
+	
+	public void buyMusic() {
+
+		String title = getStr("내 음악에 저장할 노래제목을 입력하세요 : ");
+		// 제목으로 노래 번호 확인
+		Music m = (((MyMusicMapper)Session.getMapper("myMusicMapper")).searchMyMusicNo(title));
+		if(m == null) {
+			System.out.println("입력하신 노래가 없습니다.");
+			System.out.println();
+		} else {
+		
+		MyMusic my = new MyMusic();
+		my.setNo(m.getNo());
+		my.setId(user.getId());
+
+		/*
+		// 구매 중복 확인
+		MyMusic result = new MyMusic();
+		result = (((MyMusicMapper)Session.getMapper("myMusicMapper")).selectChekcMyMusic(my));
+
+		if(result != null) {
+			System.out.println("이미 추가되있는 곡입니다.");
+
+		}else {
+		 */
+
+		// 내음악에 번호와 아이디 담기
+		((MyMusicMapper)Session.getMapper("myMusicMapper")).insertMyMusicNo(my);
+		// 음악 구매 카운트 증가
+		((MyMusicMapper)Session.getMapper("myMusicMapper")).updateMusicMusicGetCnt(m.getNo());
+
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+		System.out.printf("%s의 %s이(가) 내음악 목록에 추가되었습니다.\n", m.getSinger(), m.getTitle());
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+		System.out.println();
+		}
+		
+	} // buyMusic
 	
 	public void returnToAdmin() {
 		if (user.getId().equals("admin")) {

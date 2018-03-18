@@ -15,7 +15,7 @@
 		<result column="music_get_cnt" property="musicGetCnt"/>
 	</resultMap>
 	
-	
+	<!-- 구매음악 확인 -->
 	<select id="selectMyMusicAll" parameterType="string" resultMap="MyMusicMap">
 		select m1.title, m1.singer, m1.genre, m1.music_path
 			from tb_music m1, tb_my_music m2, tb_user u
@@ -41,6 +41,7 @@
 			and m2.id = #{id}
 	</select>
 	
+	<!-- 내음악목록 검색 -->
 	<select id="searchMyMusic" parameterType="map" resultType="Music">
 		select m1.title
 			from tb_music m1, tb_my_music m2, tb_user u
@@ -50,6 +51,7 @@
 			and m2.id = #{id}
 	</select>
 	
+	<!--  제목으로 음악번호 확인 -->
 	<select id="searchMyMusicNo" parameterType="string" resultType="Music">
 	select m1.no, m1.title, m1.singer, m1.genre, m1.music_path
 		from tb_music m1, tb_my_music m2, tb_user u
@@ -58,13 +60,28 @@
 		and m1.title like '%' || #{title} || '%'
 	
 	</select>
+			
+	<!-- 음악 구매전 보유 확인 -->
+	<select id="selectChekcMyMusic" parameterType="myMusic" resultType="myMusic">
+		select no, id
+			from tb_my_music
+			where id = #{id} and no = #{no}
+	</select>
 	
+	<!-- 음악 구매 -->
 	<insert id="insertMyMusicNo" parameterType="myMusic">
 		insert into tb_my_music
 			values(#{no}, #{id})
 	</insert>
+		
+	<!-- 뮤직구매시 카운트 증가 -->	
+	<update id="updateMusicMusicGetCnt" parameterType="int">
+		update tb_music
+			set music_get_cnt = music_get_cnt + 1
+			where no = #{no}
+	</update>
 	
-	
+	<!--  내음악 삭제 -->
 	<delete id="deleteMyMusicOne" parameterType="map">
 		delete tb_my_music
 			where id = #{id} 

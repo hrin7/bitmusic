@@ -8,7 +8,7 @@ import kr.co.bitmusic.domain.Music;
 import kr.co.bitmusic.domain.MyMusic;
 
 public interface MyMusicMapper {
-
+	
 	public List<Music> selectMyMusicAll (String userName);
 	
 	public List<Music> selectMyMusicLyrics (String userName);
@@ -19,8 +19,12 @@ public interface MyMusicMapper {
 	
 	public Music searchMyMusic (Map<String, String> param);
 	
-	public Music searchMyMusicNo (String musicNo);
+	public Music searchMyMusicNo (String title);
+	
+	public MyMusic selectChekcMyMusic(MyMusic param);
 	
 	public int insertMyMusicNo(MyMusic m);
+	
+	public int updateMusicMusicGetCnt(int musicNo);
 	
 }
