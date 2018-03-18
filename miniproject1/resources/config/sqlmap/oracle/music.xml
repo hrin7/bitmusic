@@ -36,7 +36,13 @@
 	<select id="selectMusicListByRelDate" resultMap="musicMap">
 		select no, singer, title, rel_date
 		  from tb_music
-		 order by rel_date
+		 order by rel_date desc
+	</select>
+	
+	<select id="selectMusicListByGetCnt" resultMap="musicMap">
+		select no, singer, title, rel_date
+		  from tb_music
+		 order by music_get_cnt desc
 	</select>
 	
 	<insert id="insertMusic" parameterType="music">

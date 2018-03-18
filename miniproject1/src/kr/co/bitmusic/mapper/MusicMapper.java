@@ -9,6 +9,8 @@ public interface MusicMapper {
 	List<Music> selectMusicListBySinger();
 	List<Music> selectMusicListByTitle();
 	List<Music> selectMusicListByRelDate();
+	List<Music> selectMusicListByGetCnt();
+	
 	void insertMusic(Music music);
 	
 	List<Music> selectMusicTitle(String title);
