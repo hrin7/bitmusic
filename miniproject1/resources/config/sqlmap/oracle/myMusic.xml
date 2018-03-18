@@ -70,7 +70,7 @@
 	<!-- 음악 구매 -->
 	<insert id="insertMyMusicNo" parameterType="myMusic">
 		insert into tb_my_music
-			values(#{no}, #{id})
+			values(#{id}, #{no})
 	</insert>
 		
 	<!-- 뮤직구매시 카운트 증가 -->	
