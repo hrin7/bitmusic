@@ -24,27 +24,9 @@
 			and u.id = #{id}
 	</select>
 	
-	<!-- 내음악 가사 확인 -->
-	<select id="selectMyMusicLyrics" parameterType="string" resultMap="MyMusicMap">
-		select m1.title, m1.singer, m1.genre, m1.lyrics, m1.music_path
-			from tb_music m1, tb_my_music m2, tb_user u
-			where u.id = m2.id
-			and m2.no = m1.no
-			and u.id = #{id}
-	</select>
-	
-	<select id="selectMyMusicOne" parameterType="map" resultMap="MyMusicMap">
-		select m1.title, m1.no
-			from tb_music m1, tb_my_music m2, tb_user u
-			where m2.id = u.id
-			and m2.no = m1.no
-			and m1.title like '%' || #{title} || '%'
-			and m2.id = #{id}
-	</select>
-	
-	<!-- 내음악목록 검색 -->
+	<!-- 내리스트에서 제목으로 검색 -->
 	<select id="searchMyMusic" parameterType="map" resultType="Music">
-		select m1.title
+		select m1.no, m1.title
 			from tb_music m1, tb_my_music m2, tb_user u
 			where m2.id = u.id
 			and m2.no = m1.no
