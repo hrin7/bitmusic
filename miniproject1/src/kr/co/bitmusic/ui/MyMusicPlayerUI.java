@@ -31,11 +31,9 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 	private Player player;
 
 	private BaseBitMusicUI ui = null;
-	//private MyMusicUI myui = null;
 
 	// main
 	public void service() {
-		//BaseBitMusicUI ui = null;
 		if(list.size() == 0) {
 			System.out.println("구매하신 곡이 없습니다.");
 		}else {
@@ -44,7 +42,6 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 				case 1: subMenu();break;
 				case 0: returnToMain();break;
 				}
-				//ui.service();
 			}
 		}
 	}
@@ -78,7 +75,6 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 
 	// 재생메뉴 UI
 	public int menu() {
-		//list = myMusicMapper.selectMyMusicAll(user.getId());
 		list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
 		System.out.println();
 		System.out.printf("%s님의 음악목록은 %d개입니다.\n", user.getId(), list.size());
@@ -241,7 +237,8 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		}
 
 		int lyricsNo = m.getNo(); 
-		String url = "C:/java-lec/git/bitmusic/miniproject1/lyrics/" + lyricsNo + ".txt";
+		//String url = "C:/java-lec/git/bitmusic/miniproject1/lyrics/" + lyricsNo + ".txt";
+		String url = "C:/lyrics/" + lyricsNo + "/lyrics.txt";
 		try { Desktop.getDesktop().browse(new URI(url));
 		} catch (IOException e) { System.out.println("가사 파일이 없습니다.");
 		new MyMusicUI().service();
