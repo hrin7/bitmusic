@@ -226,7 +226,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 		list = ((MyMusicMapper)Session.getMapper("myMusicMapper")).selectMyMusicAll(user.getId());
 		System.out.println();
 		for(int i=0 ; i<list.size(); i++) {
-			System.out.printf("%d. %s %s\n", i+1, list.get(i).getSinger(), list.get(i).getTitle());
+			System.out.printf("%d. %s - %s\n", i+1, list.get(i).getSinger(), list.get(i).getTitle());
 		}
 		String title = getStr("가사보기를 할 노래 제목을 입력하세요 : ");
 		Music m = ((MyMusicMapper)Session.getMapper("myMusicMapper")).searchMyMusicNo(title);
