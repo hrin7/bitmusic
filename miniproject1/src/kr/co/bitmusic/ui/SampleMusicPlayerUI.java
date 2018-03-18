@@ -37,28 +37,26 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 	
 	private Player player;
 	public void allPlay() {
-		File file = new File("samplemusic");
-		File[] files = file.listFiles();
-		for(File f : files) {
+		SampleMusic allPlay = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).sampleAllPlay();
 			try {
-				BufferedInputStream buffer =
-						new BufferedInputStream(new FileInputStream(f));
-				player = new Player(buffer);
-				player.play();
+					BufferedInputStream buffer =
+							new BufferedInputStream(new FileInputStream(allPlay.getSampleMusicPath()));
+					player = new Player(buffer);
+					System.out.println("전체 미리듣기가 실행됩니다.");
+					player.play();
 			} catch (Exception e) {
 				System.out.println("음악 재생 중 오류가 발생하였습니다.");
 			}
 		}
-	}
 	
 	public void chooseToPlay() {
 		int no = getInt("미리듣기할 곡 번호를 입력하세요 : ");
 		SampleMusic chooseToPlay = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).sampleMusicChooseToPlay(no);
-		System.out.println(chooseToPlay);
 			try {
 				BufferedInputStream buffer =
 						new BufferedInputStream(new FileInputStream(chooseToPlay.getSampleMusicPath()));
 				player = new Player(buffer);
+				System.out.println("선택한 곡의 미리듣기가 실행됩니다.");
 				player.play();
 			} catch (Exception e) {
 				System.out.println("음악 재생 중 오류가 발생하였습니다.");

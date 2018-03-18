@@ -8,6 +8,7 @@ import kr.co.bitmusic.domain.SampleMusic;
 public interface SampleMusicMapper {
 	List<Music> selectSampleMusicList();
 	SampleMusic sampleMusicChooseToPlay(int no);  
+	SampleMusic sampleAllPlay();  
 	void insertSampleMusic(SampleMusic sm);
 	void deleteSampleMusic(int no);
 	void updateSampleMusicPath(Music music);
