@@ -1,7 +1,9 @@
 package kr.co.bitmusic.ui;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
@@ -55,8 +57,20 @@ public class SelectMusicUI extends BaseBitMusicUI {
 
 	public void buyMusic() {
 		String title = getStr("내 음악에 저장할 노래제목을 입력하세요 : ");
+		
+		// 중복 체크
+		Map<String, String> param = new HashMap<>();
+		param.put("id", user.getId());
+		param.put("title", title);
+		Music check = (((MyMusicMapper)Session.getMapper("myMusicMapper")).searchMyMusic(param));
+		if(check != null) {
+			System.out.println("이미 리스트에 추가되어 있습니다.");
+			return;
+		}
+		
 		// 제목으로 노래 번호 확인
 		Music m = (((MyMusicMapper)Session.getMapper("myMusicMapper")).searchMyMusicNo(title));
+
 		if(m == null) {
 			System.out.println("입력하신 노래가 없습니다.");
 			System.out.println();
