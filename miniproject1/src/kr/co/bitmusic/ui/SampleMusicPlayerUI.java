@@ -2,6 +2,7 @@ package kr.co.bitmusic.ui;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
 import javazoom.jl.player.Player;
 import kr.co.bitmusic.common.Session;
@@ -37,16 +38,19 @@ public class SampleMusicPlayerUI extends BaseBitMusicUI {
 	
 	private Player player;
 	public void allPlay() {
-		SampleMusic allPlay = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).sampleAllPlay();
+		List<SampleMusic> allPlay = null;
+		allPlay = ((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).sampleAllPlay();
+		for(SampleMusic ap : allPlay) {
 			try {
-					BufferedInputStream buffer =
-							new BufferedInputStream(new FileInputStream(allPlay.getSampleMusicPath()));
-					player = new Player(buffer);
-					System.out.println("전체 미리듣기가 실행됩니다.");
-					player.play();
+				BufferedInputStream buffer =
+						new BufferedInputStream(new FileInputStream(ap.getSampleMusicPath()));
+				player = new Player(buffer);
+				System.out.println("전체 미리듣기가 실행됩니다.");
+				player.play();
 			} catch (Exception e) {
 				System.out.println("음악 재생 중 오류가 발생하였습니다.");
 			}
+		}
 		}
 	
 	public void chooseToPlay() {

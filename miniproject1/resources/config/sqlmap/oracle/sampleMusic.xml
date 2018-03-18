@@ -16,7 +16,7 @@
 	   order by sm.no 
 	</select>
 	
-	<select id = "sampleAllPlay" resultMap="sampleMusicMap">
+	<select id = "sampleAllPlay" resultType="samplemusic">
 	   select sample_music_path
 	   from tb_sample_music
 	</select>
