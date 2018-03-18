@@ -30,6 +30,7 @@ public class UpdateUserUI extends BaseBitMusicUI {
 				case 0: returnToFormerStep(); break;
 				}
 				System.out.println("회원정보가 수정되었습니다");
+				selectUser();
 			}
 	}
 	
@@ -42,6 +43,11 @@ public class UpdateUserUI extends BaseBitMusicUI {
 	public void returnToFormerStep() {
 		MyMusicUI mui = new MyMusicUI();
 		mui.service();
+	}
+	
+	public void selectUser() {
+		SelectUserUI sui = new SelectUserUI();
+		sui.service();
 	}
 
 }
