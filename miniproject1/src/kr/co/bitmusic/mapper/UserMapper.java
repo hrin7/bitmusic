@@ -16,6 +16,8 @@ public interface UserMapper {
 	
 	void updateUserEmail(User email);
 
+	void deleteMyMusicId (User deleteId);
+
 	void deleteUser (User delete);
 	
 	User loginUser(User user);

@@ -46,6 +46,11 @@
       where id = #{id}
    </update>
    
+   <delete id = "deleteMyMusicId" parameterType = "user">
+      delete from tb_my_music
+      where id = #{id}
+   </delete>
+   
    <delete id = "deleteUser" parameterType = "user">
       delete from tb_user
       where id = #{id}
