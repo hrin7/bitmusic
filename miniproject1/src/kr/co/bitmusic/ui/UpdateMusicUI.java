@@ -53,61 +53,101 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 	
 	public void updateMusicTitle() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
-		Music music = new Music();
-		music.setNo(updateNo);
-		music.setTitle(getStr("변경할 노래 제목을 입력하세요 : "));
-		((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
-		System.out.println("노래 제목이 수정되었습니다.");
-		musicList();
+		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		for (int i = 0; i < result.size(); i++) {
+			if (updateNo != result.get(i).getNo()) {
+				System.out.println("입력된 번호는 존재하지 않습니다.");
+				return;
+			} else {
+				Music music = new Music();
+				music.setNo(updateNo);
+				music.setTitle(getStr("변경할 노래 제목을 입력하세요 : "));
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
+				System.out.println("노래 제목이 수정되었습니다.");
+				musicList();
+			}
+		}
 	}
 	
 	public void updateMusicSinger() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
-		Music music = new Music();
-		music.setNo(updateNo);
-		music.setSinger(getStr("변경할 가수 이름을 입력하세요 : "));
-		((MusicMapper)Session.getMapper("musicMapper")).updateMusicSinger(music);
-		System.out.println("가수 이름이 수정되었습니다.");
-		musicList();
+		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		for (int i = 0; i < result.size(); i++) {
+			if (updateNo != result.get(i).getNo()) {
+				System.out.println("입력된 번호는 존재하지 않습니다.");
+				return;
+			} else {
+				Music music = new Music();
+				music.setNo(updateNo);
+				music.setSinger(getStr("변경할 가수 이름을 입력하세요 : "));
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicSinger(music);
+				System.out.println("가수 이름이 수정되었습니다.");
+				musicList();
+			}
+		}
 	}
 	
 	public void updateMusicGenre() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
-		Music music = new Music();
-		music.setNo(updateNo);
-		music.setGenre(getStr("변경할 장르를 입력하세요 : "));
-		((MusicMapper)Session.getMapper("musicMapper")).updateMusicGenre(music);
-		System.out.println("장르가 수정되었습니다.");
+		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		for (int i = 0; i < result.size(); i++) {
+			if (updateNo != result.get(i).getNo()) {
+				System.out.println("입력된 번호는 존재하지 않습니다.");
+				return;
+			} else {
+				Music music = new Music();
+				music.setNo(updateNo);
+				music.setGenre(getStr("변경할 장르를 입력하세요 : "));
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicGenre(music);
+				System.out.println("장르가 수정되었습니다.");
+			}
+		}
 	}
 	
 	public void updateMusicRelDate() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Music music = new Music();
-		music.setNo(updateNo);
-		Date d = null;
-		try {
-			d = sdf.parse(getStr("변경할 발매일을 입력하세요(yyyy-mm-dd) : "));
-		} catch (ParseException e) {
-			e.printStackTrace();
+		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		for (int i = 0; i < result.size(); i++) {
+			if (updateNo != result.get(i).getNo()) {
+				System.out.println("입력된 번호는 존재하지 않습니다.");
+				return;
+			} else {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Music music = new Music();
+				music.setNo(updateNo);
+				Date d = null;
+				try {
+					d = sdf.parse(getStr("변경할 발매일을 입력하세요(yyyy-mm-dd) : "));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				music.setRelDate(d);
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicRelDate(music);
+				System.out.println("가수 발매일이 수정되었습니다.");
+				musicList();
+			}
 		}
-		music.setRelDate(d);
-		((MusicMapper)Session.getMapper("musicMapper")).updateMusicRelDate(music);
-		System.out.println("가수 발매일이 수정되었습니다.");
-		musicList();
 	}
 	
 	public void updateMusicMusicPath() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
-		Music music = new Music();
-		SampleMusic sm = new SampleMusic();
-		music.setNo(updateNo);
-		music.setMusicPath(getStr("변경할 노래 경로를 입력하세요 : "));
-		sm.setNo(music.getNo());
-		sm.setSampleMusicPath("sample" + music.getMusicPath());
-		((MusicMapper)Session.getMapper("musicMapper")).updateMusicMusicPath(music);
-		((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).updateSampleMusicPath(sm);
-		System.out.println("노래 경로가 수정되었습니다.");
+		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		for (int i = 0; i < result.size(); i++) {
+			if (updateNo != result.get(i).getNo()) {
+				System.out.println("입력된 번호는 존재하지 않습니다.");
+				return;
+			} else {
+				Music music = new Music();
+				SampleMusic sm = new SampleMusic();
+				music.setNo(updateNo);
+				music.setMusicPath(getStr("변경할 노래 경로를 입력하세요 : "));
+				sm.setNo(music.getNo());
+				sm.setSampleMusicPath("sample" + music.getMusicPath());
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicMusicPath(music);
+				((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).updateSampleMusicPath(sm);
+				System.out.println("노래 경로가 수정되었습니다.");
+			}
+		}
 	}
 	
 	public void returnToAdmin() {
