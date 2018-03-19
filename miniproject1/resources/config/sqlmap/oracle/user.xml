@@ -83,7 +83,7 @@
          <if test = "id != null">
             id = #{id}
          </if>
-         <if test = "password_hint != null">
+         <if test = "passwordHint != null">
             and password_hint = #{passwordHint}
          </if>
       </where>
