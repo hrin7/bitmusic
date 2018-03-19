@@ -15,8 +15,8 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		while (true) {
 			switch (menu()) {
 			case 1: deleteMusicNo(); break;
-			case 2: deleteMusicTitle(); break;
-			case 3: deleteMusicSinger(); break;
+			case 2: deleteMusicSinger(); break;
+			case 3: deleteMusicTitle(); break;
 			case 0: returnToAdmin(); break;
 			}
 		}
@@ -24,7 +24,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	public int menu() {
 		System.out.println();
-		System.out.println("[1.노래번호로 삭제] [2.노래제목으로 삭제] [3.가수이름으로 삭제] [0.뒤로가기]");
+		System.out.println("[1.노래번호로 삭제] [2.가수이름으로 삭제] [3.노래제목으로 삭제] [0.뒤로가기]");
 		return getInt("삭제할 메뉴를 입력하세요 : ");
 	}
 	
