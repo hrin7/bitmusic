@@ -18,8 +18,8 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 		musicList();
 		while (true) {
 			switch (menu()) {
-				case 1: updateMusicTitle(); break;
-				case 2: updateMusicSinger(); break;
+				case 1: updateMusicSinger(); break;
+				case 2: updateMusicTitle(); break;
 				case 3: updateMusicGenre(); break;
 				case 4: updateMusicRelDate(); break;
 				case 5: updateMusicMusicPath(); break;
@@ -47,71 +47,80 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 	
 	public int menu() {
 		System.out.println();
-		System.out.println("[1.노래제목수정] [2.가수이름수정] [3.장르수정] [4.발매일수정] [5.파일경로수정] [0.뒤로가기]");
+		System.out.println("[1.가수이름수정] [2.노래제목수정] [3.장르수정] [4.발매일수정] [5.파일경로수정] [0.뒤로가기]");
 		return getInt("수정할 메뉴를 입력하세요 : ");
 	}
 	
 	public void updateMusicTitle() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		boolean flag = false;
 		for (int i = 0; i < result.size(); i++) {
-			if (updateNo != result.get(i).getNo()) {
-				System.out.println("입력된 번호는 존재하지 않습니다.");
-				return;
-			} else {
+			if (updateNo == result.get(i).getNo()) {
+				flag = true;
 				Music music = new Music();
 				music.setNo(updateNo);
 				music.setTitle(getStr("변경할 노래 제목을 입력하세요 : "));
 				((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
 				System.out.println("노래 제목이 수정되었습니다.");
 				musicList();
+				return;
 			}
+		}
+		if (flag == false) {
+			System.out.println("입력된 번호는 존재하지 않습니다.");
 		}
 	}
 	
 	public void updateMusicSinger() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		boolean flag = false;
 		for (int i = 0; i < result.size(); i++) {
-			if (updateNo != result.get(i).getNo()) {
-				System.out.println("입력된 번호는 존재하지 않습니다.");
-				return;
-			} else {
+			if (updateNo == result.get(i).getNo()) {
+				flag = true;
 				Music music = new Music();
 				music.setNo(updateNo);
-				music.setSinger(getStr("변경할 가수 이름을 입력하세요 : "));
-				((MusicMapper)Session.getMapper("musicMapper")).updateMusicSinger(music);
+				music.setTitle(getStr("변경할 가수 이름을 입력하세요 : "));
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
 				System.out.println("가수 이름이 수정되었습니다.");
 				musicList();
+				return;
 			}
+		}
+		if (flag == false) {
+			System.out.println("입력된 번호는 존재하지 않습니다.");
 		}
 	}
 	
 	public void updateMusicGenre() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		boolean flag = false;
 		for (int i = 0; i < result.size(); i++) {
-			if (updateNo != result.get(i).getNo()) {
-				System.out.println("입력된 번호는 존재하지 않습니다.");
-				return;
-			} else {
+			if (updateNo == result.get(i).getNo()) {
+				flag = true;
 				Music music = new Music();
 				music.setNo(updateNo);
-				music.setGenre(getStr("변경할 장르를 입력하세요 : "));
-				((MusicMapper)Session.getMapper("musicMapper")).updateMusicGenre(music);
+				music.setTitle(getStr("변경할 장르를 입력하세요 : "));
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
 				System.out.println("장르가 수정되었습니다.");
+				musicList();
+				return;
 			}
+		}
+		if (flag == false) {
+			System.out.println("입력된 번호는 존재하지 않습니다.");
 		}
 	}
 	
 	public void updateMusicRelDate() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		boolean flag = false;
 		for (int i = 0; i < result.size(); i++) {
-			if (updateNo != result.get(i).getNo()) {
-				System.out.println("입력된 번호는 존재하지 않습니다.");
-				return;
-			} else {
+			if (updateNo == result.get(i).getNo()) {
+				flag = true;
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Music music = new Music();
 				music.setNo(updateNo);
@@ -125,18 +134,21 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 				((MusicMapper)Session.getMapper("musicMapper")).updateMusicRelDate(music);
 				System.out.println("가수 발매일이 수정되었습니다.");
 				musicList();
+				return;
 			}
+		}
+		if (flag == false) {
+			System.out.println("입력된 번호는 존재하지 않습니다.");
 		}
 	}
 	
 	public void updateMusicMusicPath() {
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		List<Music> result = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		boolean flag = false;
 		for (int i = 0; i < result.size(); i++) {
-			if (updateNo != result.get(i).getNo()) {
-				System.out.println("입력된 번호는 존재하지 않습니다.");
-				return;
-			} else {
+			if (updateNo == result.get(i).getNo()) {
+				flag = true;
 				Music music = new Music();
 				SampleMusic sm = new SampleMusic();
 				music.setNo(updateNo);
@@ -146,7 +158,11 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 				((MusicMapper)Session.getMapper("musicMapper")).updateMusicMusicPath(music);
 				((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).updateSampleMusicPath(sm);
 				System.out.println("노래 경로가 수정되었습니다.");
+				return;
 			}
+		}
+		if (flag == false) {
+			System.out.println("입력된 번호는 존재하지 않습니다.");
 		}
 	}
 	

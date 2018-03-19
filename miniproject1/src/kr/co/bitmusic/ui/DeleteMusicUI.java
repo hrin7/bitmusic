@@ -48,11 +48,10 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	public void deleteMusicNo() {
 		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
 		List<Music> list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		boolean flag = false;
 		for (int i = 0; i < list.size(); i++) {
-			if (no != list.get(i).getNo()) {
-				System.out.println("입력된 번호는 존재하지 않습니다.");
-				return;
-			} else {
+			if (no == list.get(i).getNo()) {
+				flag = true;
 				Music m = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicNo(no);
 				System.out.printf("%d. %s - %s ", no, m.getSinger(), m.getTitle());
 				int delNo = getInt("노래를 삭제하시겠습니까?(1-예  2-아니오) ");
@@ -69,7 +68,11 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 					System.out.println("이전메뉴로 돌아갑니다.");
 				}
 				musicList();
+				return;
 			}
+		}
+		if (flag == false) {
+			System.out.println("입력된 번호는 존재하지 않습니다.");
 		}
 	}
 	
