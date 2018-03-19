@@ -21,7 +21,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
 		while (true) {
 			switch (menu()) {
-			case 1: selectMusicList(); break;
+			case 1: selectMusicListNo(); break;
 			case 2: selectMusicListBySinger(); break;
 			case 3: selectMusicListByTitle(); break;
 			case 4: selectMusicListByRelDate(); break;
@@ -29,7 +29,6 @@ public class SelectMusicUI extends BaseBitMusicUI {
 			case 6: buyMusic(); break;
 			case 0: returnToAdmin(); break;
 			}
-			selectMusicList();
 		}
 	}
 
@@ -40,7 +39,6 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	}
 
 	public void selectMusicList() {
-		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
 		System.out.println();
 		System.out.printf("전체 %d개\n", list.size());
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
@@ -56,6 +54,11 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 	}
 	
+	public void selectMusicListNo() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListNo();
+		selectMusicList();
+	}
+	
 	public void selectMusicListBySinger() {
 		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListBySinger();
 		selectMusicList();
@@ -66,13 +69,13 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		selectMusicList();
 	}
 	
-	public void selectMusicListByGetCnt() {
-		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByGetCnt();
+	public void selectMusicListByRelDate() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByRelDate();
 		selectMusicList();
 	}
 	
-	public void selectMusicListByRelDate() {
-		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByRelDate();
+	public void selectMusicListByGetCnt() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByGetCnt();
 		selectMusicList();
 	}
 

@@ -51,6 +51,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		System.out.printf("%d. %s - %s ", no, m.getSinger(), m.getTitle());
 		int delNo = getInt("노래를 삭제하시겠습니까?(1-예  2-아니오) ");
 		if (delNo == 1) {
+			((MusicMapper)Session.getMapper("musicMapper")).deleteMyMusic(no);
 			((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).deleteSampleMusic(no);
 			int result = ((MusicMapper)Session.getMapper("musicMapper")).deleteMusic(no);
 			if (result == 0) {
@@ -104,6 +105,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	public void deleteMusic() {
 		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
+		((MusicMapper)Session.getMapper("musicMapper")).deleteMyMusic(no);
 		((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).deleteSampleMusic(no);
 		int result = ((MusicMapper)Session.getMapper("musicMapper")).deleteMusic(no);
 		

@@ -6,6 +6,7 @@ import kr.co.bitmusic.domain.Music;
 
 public interface MusicMapper {
 	List<Music> selectMusicList();
+	List<Music> selectMusicListNo();
 	List<Music> selectMusicListBySinger();
 	List<Music> selectMusicListByTitle();
 	List<Music> selectMusicListByRelDate();
@@ -24,5 +25,6 @@ public interface MusicMapper {
 	int updateMusicMusicPath(Music music);
 	
 	int deleteMusic(int no);
+	void deleteMyMusic(int no);
 	
 }
