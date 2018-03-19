@@ -81,8 +81,8 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 				flag = true;
 				Music music = new Music();
 				music.setNo(updateNo);
-				music.setTitle(getStr("변경할 가수 이름을 입력하세요 : "));
-				((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
+				music.setSinger(getStr("변경할 가수 이름을 입력하세요 : "));
+				((MusicMapper)Session.getMapper("musicMapper")).updateMusicSinger(music);
 				System.out.println("가수 이름이 수정되었습니다.");
 				musicList();
 				return;
