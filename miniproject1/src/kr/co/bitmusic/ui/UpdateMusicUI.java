@@ -7,7 +7,9 @@ import java.util.List;
 
 import kr.co.bitmusic.common.Session;
 import kr.co.bitmusic.domain.Music;
+import kr.co.bitmusic.domain.SampleMusic;
 import kr.co.bitmusic.mapper.MusicMapper;
+import kr.co.bitmusic.mapper.SampleMusicMapper;
 
 public class UpdateMusicUI extends BaseBitMusicUI {
 	private int updateNo;
@@ -42,7 +44,6 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 		}
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
-//		if (updateNo == 0)
 	}
 	
 	public int menu() {
@@ -92,9 +93,13 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 	
 	public void updateMusicMusicPath() {
 		Music music = new Music();
+		SampleMusic sm = new SampleMusic();
 		music.setNo(updateNo);
 		music.setMusicPath(getStr("변경할 노래 경로를 입력하세요 : "));
+		sm.setNo(music.getNo());
+		sm.setSampleMusicPath("sample" + music.getMusicPath());
 		((MusicMapper)Session.getMapper("musicMapper")).updateMusicMusicPath(music);
+		((SampleMusicMapper)Session.getMapper("sampleMusicMapper")).updateSampleMusicPath(sm);
 		System.out.println("노래 경로가 수정되었습니다.");
 	}
 	

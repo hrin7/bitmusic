@@ -24,13 +24,14 @@ public class InsertMusicUI extends BaseBitMusicUI {
 		try {
 			d = sdf.parse(getStr("발매일(yyyy-MM-dd) : "));
 		} catch (ParseException e) {
-			e.printStackTrace();
+			System.out.println("잘못 입력되었습니다. 다시입력해주세요");
+			service();
 		}
 		m.setRelDate(d);
-		m.setMusicPath(getStr("완곡 경로 : "));
+		m.setMusicPath(getStr("음악 경로 : "));
 		
 		SampleMusic sm = new SampleMusic();
-		sm.setSampleMusicPath(getStr("샘플 뮤직 경로 : "));
+		sm.setSampleMusicPath("sample" + m.getMusicPath());
 		
 		((MusicMapper) Session.getMapper("musicMapper")).insertMusic(m);
 		sm.setNo(m.getNo());

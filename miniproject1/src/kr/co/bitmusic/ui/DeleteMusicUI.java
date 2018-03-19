@@ -26,7 +26,6 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		return getInt("삭제할 메뉴를 입력하세요 : ");
 	}
 	
-	// 수정할부분
 	public void deleteMusicNo() {
 		int no = getInt("삭제할 노래 번호를 입력하세요 : ");
 		Music m = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicNo(no);
