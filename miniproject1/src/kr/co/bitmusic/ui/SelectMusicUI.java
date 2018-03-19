@@ -36,7 +36,7 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	public int menu() {
 		System.out.println();
 		System.out.println("[1.번호순] [2.가수이름순] [3.노래제목순] [4.발매일순] [5.인기순] [6.노래담기] [0.뒤로가기]");
-		return getInt("정렬할 메뉴번호를 입력하세요 : ");
+		return getInt("실행할 메뉴번호를 입력하세요 : ");
 	}
 
 	public void selectMusicList() {
