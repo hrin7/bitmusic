@@ -49,7 +49,7 @@ public class SearchUserUI extends BaseBitMusicUI {
 			System.out.println();
 			System.out.println("비밀번호를 찾기 위해 아이디와 이메일을 입력해 주세요");
 			user.setId(getStr("아이디 : "));
-			user.setEmail(getStr("이메일 : "));
+			user.setPasswordHint(getStr("비밀번호 힌트 : "));
 			User pw = ((UserMapper)Session.getMapper("userMapper")).selectUserSearchPassword(user);
 			System.out.println("비밀번호는 " + pw.getPassword() + "입니다.");
 		} catch (Exception e) {
