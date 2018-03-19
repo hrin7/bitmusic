@@ -21,26 +21,32 @@
 		 order by no
 	</select>
 	
+	<select id="selectMusicListNo" resultMap="musicMap">
+		select no, singer, title, rel_date, music_get_cnt
+		  from tb_music
+		 order by no
+	</select>
+	
 	<select id="selectMusicListBySinger" resultMap="musicMap">
-		select no, singer, title, rel_date
+		select no, singer, title, rel_date, music_get_cnt
 		  from tb_music
 		 order by singer
 	</select>
 	
 	<select id="selectMusicListByTitle" resultMap="musicMap">
-		select no, singer, title, rel_date
+		select no, singer, title, rel_date, music_get_cnt
 		  from tb_music
 		 order by title
 	</select>
 	
 	<select id="selectMusicListByRelDate" resultMap="musicMap">
-		select no, singer, title, rel_date
+		select no, singer, title, rel_date, music_get_cnt
 		  from tb_music
 		 order by rel_date desc
 	</select>
 	
 	<select id="selectMusicListByGetCnt" resultMap="musicMap">
-		select no, singer, title, rel_date
+		select no, singer, title, rel_date, music_get_cnt
 		  from tb_music
 		 order by music_get_cnt desc
 	</select>
@@ -125,4 +131,11 @@
 		  from tb_music
 		 where no = #{no}
 	</delete>
+	
+	<delete id="deleteMyMusic" parameterType="int">
+		delete
+		  from tb_my_music
+		 where no = #{no}
+	</delete>
+	
 </mapper>
