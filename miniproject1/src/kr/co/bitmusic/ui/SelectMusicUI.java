@@ -21,11 +21,11 @@ public class SelectMusicUI extends BaseBitMusicUI {
 		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
 		while (true) {
 			switch (menu()) {
-			case 1: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList(); break;
-			case 2: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListBySinger(); break;
-			case 3: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByTitle(); break;
-			case 4: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByRelDate(); break;
-			case 5: list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByGetCnt(); break;
+			case 1: selectMusicList(); break;
+			case 2: selectMusicListBySinger(); break;
+			case 3: selectMusicListByTitle(); break;
+			case 4: selectMusicListByRelDate(); break;
+			case 5: selectMusicListByGetCnt(); break;
 			case 6: buyMusic(); break;
 			case 0: returnToAdmin(); break;
 			}
@@ -54,6 +54,26 @@ public class SelectMusicUI extends BaseBitMusicUI {
 			System.out.println("노래가 존재하지 않습니다.");
 		}
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+	}
+	
+	public void selectMusicListBySinger() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListBySinger();
+		selectMusicList();
+	}
+	
+	public void selectMusicListByTitle() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByTitle();
+		selectMusicList();
+	}
+	
+	public void selectMusicListByGetCnt() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByGetCnt();
+		selectMusicList();
+	}
+	
+	public void selectMusicListByRelDate() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicListByRelDate();
+		selectMusicList();
 	}
 
 	public void buyMusic() {
