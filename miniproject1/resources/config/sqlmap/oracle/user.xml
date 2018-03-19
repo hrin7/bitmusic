@@ -83,8 +83,8 @@
          <if test = "id != null">
             id = #{id}
          </if>
-         <if test = "email != null">
-            and email = #{email}
+         <if test = "password_hint != null">
+            and password_hint = #{passwordHint}
          </if>
       </where>
    </select>
