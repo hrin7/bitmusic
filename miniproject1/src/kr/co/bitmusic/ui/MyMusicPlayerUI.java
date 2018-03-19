@@ -132,7 +132,7 @@ public class MyMusicPlayerUI extends BaseBitMusicUI{
 	// 이전곡
 	public void prev() {
 		stop();
-		pos = pos - 2;
+		pos = pos - 1;
 
 		if(pos <= 0) {
 			System.out.println("이전 곡이 없습니다. 처음부터 재생합니다.");
