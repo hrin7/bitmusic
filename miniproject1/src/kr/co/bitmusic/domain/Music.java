@@ -23,8 +23,19 @@ public class Music {
 
     // 노래경로 
     private String musicPath;
+    
+    private int musicGetCnt;
 
-    public Integer getNo() {
+    
+    public int getMusicGetCnt() {
+		return musicGetCnt;
+	}
+
+	public void setMusicGetCnt(int musicGetCnt) {
+		this.musicGetCnt = musicGetCnt;
+	}
+
+	public Integer getNo() {
         return no;
     }
 

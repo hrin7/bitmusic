@@ -40,14 +40,15 @@ public class SelectMusicUI extends BaseBitMusicUI {
 	}
 
 	public void selectMusicList() {
+		list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
 		System.out.println();
 		System.out.printf("전체 %d개\n", list.size());
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
-		System.out.println("번호\t가수\t\t\t제목\t\t\t\t발매일");
+		System.out.println("번호\t가수\t\t\t제목\t\t\t\t발매일\t\t\t\t인기순");
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		for (Music m : list) {
-			System.out.printf("%d\t%s\t\t\t%s\t\t\t\t%s\n", m.getNo(), m.getSinger(), m.getTitle(), sdf.format(m.getRelDate()));
+			System.out.printf("%d\t%s\t\t\t%s\t\t\t\t%s\t\t\t%d\n", m.getNo(), m.getSinger(), m.getTitle(), sdf.format(m.getRelDate()), m.getMusicGetCnt());
 		}
 		if (list.isEmpty()) {
 			System.out.println("노래가 존재하지 않습니다.");

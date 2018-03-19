@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<select id="selectMusicList" resultMap="musicMap">
-		select no, singer, title, rel_date
+		select no, singer, title, rel_date, music_get_cnt
 		  from tb_music
 		 order by no
 	</select>
