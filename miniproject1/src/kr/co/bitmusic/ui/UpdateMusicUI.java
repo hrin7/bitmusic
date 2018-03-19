@@ -43,7 +43,6 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 			System.out.println("노래가 존재하지 않습니다.");
 		}
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
-		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 	}
 	
 	public int menu() {
@@ -53,22 +52,27 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void updateMusicTitle() {
+		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		Music music = new Music();
 		music.setNo(updateNo);
 		music.setTitle(getStr("변경할 노래 제목을 입력하세요 : "));
 		((MusicMapper)Session.getMapper("musicMapper")).updateMusicTitle(music);
 		System.out.println("노래 제목이 수정되었습니다.");
+		musicList();
 	}
 	
 	public void updateMusicSinger() {
+		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		Music music = new Music();
 		music.setNo(updateNo);
 		music.setSinger(getStr("변경할 가수 이름을 입력하세요 : "));
 		((MusicMapper)Session.getMapper("musicMapper")).updateMusicSinger(music);
 		System.out.println("가수 이름이 수정되었습니다.");
+		musicList();
 	}
 	
 	public void updateMusicGenre() {
+		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		Music music = new Music();
 		music.setNo(updateNo);
 		music.setGenre(getStr("변경할 장르를 입력하세요 : "));
@@ -77,6 +81,7 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 	}
 	
 	public void updateMusicRelDate() {
+		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Music music = new Music();
 		music.setNo(updateNo);
@@ -89,9 +94,11 @@ public class UpdateMusicUI extends BaseBitMusicUI {
 		music.setRelDate(d);
 		((MusicMapper)Session.getMapper("musicMapper")).updateMusicRelDate(music);
 		System.out.println("가수 발매일이 수정되었습니다.");
+		musicList();
 	}
 	
 	public void updateMusicMusicPath() {
+		updateNo = getInt("수정할 노래 번호를 입력하세요 : ");
 		Music music = new Music();
 		SampleMusic sm = new SampleMusic();
 		music.setNo(updateNo);

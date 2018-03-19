@@ -43,4 +43,10 @@
 		 where no = #{no}
 	</delete>
 	
+	<update id="updateSampleMusicPath" parameterType="samplemusic">
+		update tb_sample_music
+		   set sample_music_path = #{sampleMusicPath}
+	 	 where no = #{no}
+	</update>
+	
 </mapper>

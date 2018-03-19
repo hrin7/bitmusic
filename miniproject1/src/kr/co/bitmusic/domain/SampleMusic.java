@@ -21,6 +21,7 @@ public class SampleMusic {
 	public void setSampleMusicPath(String sampleMusicPath) {
 		this.sampleMusicPath = sampleMusicPath;
 	}
+	
 
 	@Override
 	public String toString() {

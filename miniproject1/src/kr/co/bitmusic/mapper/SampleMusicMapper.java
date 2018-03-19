@@ -11,5 +11,5 @@ public interface SampleMusicMapper {
 	List<SampleMusic> sampleAllPlay();  
 	void insertSampleMusic(SampleMusic sm);
 	void deleteSampleMusic(int no);
-	void updateSampleMusicPath(Music music);
+	void updateSampleMusicPath(SampleMusic music);
 }

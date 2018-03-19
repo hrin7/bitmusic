@@ -1,5 +1,6 @@
 package kr.co.bitmusic.ui;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import kr.co.bitmusic.common.Session;
@@ -10,6 +11,7 @@ import kr.co.bitmusic.mapper.SampleMusicMapper;
 public class DeleteMusicUI extends BaseBitMusicUI {
 	
 	public void service() {
+		musicList();
 		while (true) {
 			switch (menu()) {
 			case 1: deleteMusicNo(); break;
@@ -24,6 +26,23 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		System.out.println();
 		System.out.println("[1.노래번호로 삭제] [2.노래제목으로 삭제] [3.가수이름으로 삭제] [0.뒤로가기]");
 		return getInt("삭제할 메뉴를 입력하세요 : ");
+	}
+	
+	public void musicList() {
+		List<Music> list = ((MusicMapper)Session.getMapper("musicMapper")).selectMusicList();
+		System.out.println();
+		System.out.printf("전체 %d개\n", list.size());
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+		System.out.println("번호\t가수\t\t\t제목\t\t\t\t발매일");
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		for (Music m : list) {
+			System.out.printf("%d\t%s\t\t\t%s\t\t\t\t%s\n", m.getNo(), m.getSinger(), m.getTitle(), sdf.format(m.getRelDate()));
+		}
+		if (list.isEmpty()) {
+			System.out.println("노래가 존재하지 않습니다.");
+		}
+		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 	}
 	
 	public void deleteMusicNo() {
@@ -42,6 +61,7 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		} else {
 			System.out.println("이전메뉴로 돌아갑니다.");
 		}
+		musicList();
 	}
 	
 	public void deleteMusicTitle() {
@@ -49,12 +69,18 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		System.out.println();
 		System.out.printf("검색 된 노래 총 %d개\n", list.size());
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+		if (list.size() == 0) {
+			System.out.println("검색된 결과가 없습니다.");
+			System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+			return;
+		}
 		for (Music m : list) {
 			System.out.printf("%d. %s - %s\n", m.getNo(), m.getSinger(), m.getTitle());
 		}
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		
 		deleteMusic();
+		musicList();
 	}
 	
 	public void deleteMusicSinger() {
@@ -62,12 +88,18 @@ public class DeleteMusicUI extends BaseBitMusicUI {
 		System.out.println();
 		System.out.printf("검색 된 노래 총 %d개\n", list.size());
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+		if (list.size() == 0) {
+			System.out.println("검색된 결과가 없습니다.");
+			System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+			return;
+		}
 		for (Music m : list) {
 			System.out.printf("%d. %s - %s\n", m.getNo(), m.getSinger(), m.getTitle());
 		}
 		System.out.println("＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
 		
 		deleteMusic();
+		musicList();
 	}
 	
 	public void deleteMusic() {
