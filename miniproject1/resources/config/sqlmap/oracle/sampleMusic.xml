@@ -19,6 +19,7 @@
 	<select id = "sampleAllPlay" resultMap="sampleMusicMap">
 	   select sample_music_path
 	   from tb_sample_music
+	   order by no
 	</select>
 
 	<select id = "sampleMusicChooseToPlay" parameterType="int" resultMap="sampleMusicMap">
